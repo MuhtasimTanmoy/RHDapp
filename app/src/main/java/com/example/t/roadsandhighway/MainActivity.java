@@ -23,16 +23,17 @@ public class MainActivity extends AppCompatActivity implements MeteorCallback {
 
     private Meteor mMeteor;
     private Button button;
-    private static String TAG="checkThisTag";
+    private static String TAG = "checkThisTag";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        button= (Button) findViewById(R.id.test);
+        button = (Button) findViewById(R.id.test);
 
 
         // create a new instance
-        mMeteor = new Meteor(this, "ws://192.168.0.105:3000/websocket");
+        mMeteor = new Meteor(this, "ws://192.168.0.101:3000/websocket");
 
         // register the callback that will handle events and receive messages
         mMeteor.addCallback(this);
@@ -44,50 +45,48 @@ public class MainActivity extends AppCompatActivity implements MeteorCallback {
             @Override
             public void onClick(View v) {
 
-//                if (mMeteor.isConnected()) {
-//                    mMeteor.loginWithEmail("tanmoyme", "tanmoyme", new ResultListener() {
-//                        @Override
-//                        public void onSuccess(String result) {
-//                            Log.d(TAG, "Logged in: " + result);
-//
-//                            try {
-//                                JSONObject login = new JSONObject(result);
-//
-//                                String userId = login.getString("id");
-//                                String token = login.getString("token");
-//                                long expiry = login.get                                                                   JSONObject("tokenExpires").getLong("$date");
-//
-//                                Map<String, Object> user = new HashMap<String, Object>();
-//                                user.put("_id", userId);
-//
-//                                Object[] queryParams = {user};
-//
+                if (mMeteor.isConnected()) {
+                    mMeteor.loginWithUsername("bishwa", "1234", new ResultListener() {
+                        @Override
+                        public void onSuccess(String result) {
+                            Log.d(TAG, "Logged in: " + result);
 
-//                                mMeteor.call("/Users/find", queryParams, new ResultListener() {
-//                                    @Override
-//                                    public void onSuccess(String result) {
-//                                        Log.d(TAG, "Call result: " + result);
-//                                    }
-//
-//                                    @Override
-//                                    public void onError(String error, String reason, String details) {
-//                                        Log.d(TAG, "Error: " + error + " " + reason + " " + details);
-//                                    }
-//                                });
-//                            } catch (JSONException e) {
-//                                e.printStackTrace();
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onError(String error, String reason, String details) {
-//                            Log.d(TAG, "Error: " + error + " " + reason + " " + details);
-//                        }
-//                    });
-//                }
+                            String subscriptionId = mMeteor.subscribe("Statuses");
+                            Toast.makeText(getApplicationContext(), Boolean.toString(mMeteor.isConnected()) + " and" + subscriptionId, Toast.LENGTH_LONG).show();
+                            Map<String, Object> values = new HashMap<String, Object>();
+                            values.put("level", "TJ-1");
+                            values.put("averageSpeed", "");
+                            values.put("trafficVolume", "");
+                            values.put("note", "");
+                            values.put("filePath", null);
+                            values.put("latitude", 22.4);
+                            values.put("longitude", 90);
+                            values.put("address", "BUET");
+                            Object[] queryParams = {values};
+                            mMeteor.call("statuses.insert",queryParams,new ResultListener() {
 
-                String subscriptionId = mMeteor.subscribe("Statuses");
-                Toast.makeText(getApplicationContext(),Boolean.toString(mMeteor.isConnected())+" and" + subscriptionId,Toast.LENGTH_LONG).show();
+                                @Override
+                                public void onSuccess(String result) {
+                                    Log.d(TAG, "success  in inserting" );
+
+                                }
+
+                                @Override
+                                public void onError(String error, String reason, String details) {
+                                    Log.d(TAG, "Error: " + error + " " + reason + " " + details);
+
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onError(String error, String reason, String details) {
+                            Log.d(TAG, "Error: " + error + " " + reason + " " + details);
+                        }
+                    });
+                }
+
+
             }
         });
 
@@ -96,7 +95,6 @@ public class MainActivity extends AppCompatActivity implements MeteorCallback {
 
     @Override
     public void onConnect(boolean signedInAutomatically) {
-
 
 
     }
