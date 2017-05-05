@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/number"
+        android:hint="@string/mobile_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        />
+        <EditText
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="425dp"
+            android:hint="Content"
+            android:textColorHint="@color/colorPrimary"
+            />
+
+        <Button
+            android:id="@+id/smsButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/send"
+            android:textColor="#000000"
+            android:background="@color/white"
+            android:layout_gravity="center"/>
+
+
+
+</LinearLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.t.roadsandhighway.MainActivity">
+    tools:context="com.example.t.roadsandhighway.Activity.MainActivity">
 
     <Button
         android:id="@+id/test"
@@ -12,6 +12,14 @@
         android:layout_height="wrap_content"
         android:text="Press me"
         android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sendsms"
+        android:layout_below="@+id/test"
+        android:text="Sms"
         android:layout_centerHorizontal="true"
         />
 
