@@ -1,12 +1,21 @@
 package com.example.t.roadsandhighway.Activity;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.LocationManager;
+import android.os.Build;
+import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.example.t.roadsandhighway.R;
 
@@ -29,6 +38,9 @@ public class MainActivity extends AppCompatActivity implements MeteorCallback {
     private Button button;
     private Button smsActivity;
     private static String TAG = "checkThisTag";
+    ToggleButton toggleButton;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements MeteorCallback {
         setContentView(R.layout.activity_main);
         button = (Button) findViewById(R.id.test);
         smsActivity= (Button) findViewById(R.id.sendsms);
+        toggleButton= (ToggleButton) findViewById(R.id.toggle);
+
 
 
         // create a new instance
@@ -59,6 +73,10 @@ public class MainActivity extends AppCompatActivity implements MeteorCallback {
             }
         });
 
+        if(!runtime_permissions())
+            enable_buttons();
+
+
 
 
 
@@ -67,10 +85,48 @@ public class MainActivity extends AppCompatActivity implements MeteorCallback {
             public void onClick(View v) {
                 Intent intent=new Intent(MainActivity.this,SmsActivity.class);
                 startActivity(intent);
+
             }
+
         });
 
 
+    }
+
+    private void enable_buttons() {
+        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    Intent i = new Intent(getApplicationContext(), GpsService.class);
+                    startService(i);
+                } else {
+                    Intent i = new Intent(getApplicationContext(), GpsService.class);
+                    stopService(i);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == 100){
+            if( grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED){
+                enable_buttons();
+            }else {
+                runtime_permissions();
+            }
+        }
+    }
+
+    private boolean runtime_permissions() {
+        if(Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},100);
+
+            return true;
+        }
+        return false;
     }
 
 
@@ -145,12 +201,6 @@ public class MainActivity extends AppCompatActivity implements MeteorCallback {
 
     @Override
     public void onDataRemoved(String collectionName, String documentID) {
-        //                int numCollections = mMeteor.getDatabase().count();
 
-//                  String subscriptionId = mMeteor.subscribe("suddenSicknesses");
-//
-//                mMeteor.call("myMethod", new Object[] { "description", "ddfsdfs" }  );
-//
-//                Log.v("myTag",Integer.toString(numCollections));
     }
 }
