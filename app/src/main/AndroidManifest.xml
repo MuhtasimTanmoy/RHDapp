@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.t.roadsandhighway">
 
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.SEND_SMS"></uses-permission>
@@ -24,7 +25,13 @@
         <activity android:name=".Activity.SmsActivity">
 
         </activity>
+        <activity android:name=".Activity.OcrActivity">
+
+        </activity>
         <service android:name=".Activity.GpsService"> </service>
+
+        <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="ocr"/>
     </application>
 
 </manifest>

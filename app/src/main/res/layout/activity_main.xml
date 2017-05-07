@@ -5,6 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.t.roadsandhighway.Activity.MainActivity">
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
 
     <Button
         android:id="@+id/test"
@@ -22,6 +35,13 @@
         android:text="Sms"
         android:layout_centerHorizontal="true"
         />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ocr"
+        android:layout_below="@+id/test"
+        android:text="OCRtest"
+        android:layout_centerHorizontal="true"/>
     <ToggleButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

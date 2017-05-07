@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements MeteorCallback {
     private Meteor mMeteor;
     private Button button;
     private Button smsActivity;
+    private Button ocr;
     private static String TAG = "checkThisTag";
     ToggleButton toggleButton;
 
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements MeteorCallback {
         button = (Button) findViewById(R.id.test);
         smsActivity= (Button) findViewById(R.id.sendsms);
         toggleButton= (ToggleButton) findViewById(R.id.toggle);
+        ocr= (Button) findViewById(R.id.ocr);
 
 
 
@@ -60,6 +62,15 @@ public class MainActivity extends AppCompatActivity implements MeteorCallback {
 
         // establish the connection
         mMeteor.connect();
+
+        ocr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,OcrActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
