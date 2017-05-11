@@ -1,5 +1,6 @@
 package com.example.t.roadsandhighway;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +30,10 @@ public class MainActivity extends AppCompatActivity implements MeteorCallback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = new Intent(getApplicationContext(), SignIn.class);
+        startActivity(intent);
+
         button = (Button) findViewById(R.id.test);
 
 
@@ -51,8 +56,6 @@ public class MainActivity extends AppCompatActivity implements MeteorCallback {
                         public void onSuccess(String result) {
                             Log.d(TAG, "Logged in: " + result);
 
-                            String subscriptionId = mMeteor.subscribe("Statuses");
-                            Toast.makeText(getApplicationContext(), Boolean.toString(mMeteor.isConnected()) + " and" + subscriptionId, Toast.LENGTH_LONG).show();
                             Map<String, Object> values = new HashMap<String, Object>();
                             values.put("level", "TJ-1");
                             values.put("averageSpeed", "");
@@ -63,11 +66,11 @@ public class MainActivity extends AppCompatActivity implements MeteorCallback {
                             values.put("longitude", 90);
                             values.put("address", "BUET");
                             Object[] queryParams = {values};
-                            mMeteor.call("statuses.insert",queryParams,new ResultListener() {
+                            mMeteor.call("statuses.insert", queryParams, new ResultListener() {
 
                                 @Override
                                 public void onSuccess(String result) {
-                                    Log.d(TAG, "success  in inserting" );
+                                    Log.d(TAG, "success  in inserting");
 
                                 }
 
