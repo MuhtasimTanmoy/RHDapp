@@ -21,15 +21,15 @@ import im.delight.android.ddp.Meteor;
 import im.delight.android.ddp.MeteorCallback;
 import im.delight.android.ddp.ResultListener;
 
-public class StatusSend extends AppCompatActivity implements MeteorCallback {
+public class StatusSend extends AppCompatActivity   implements AdapterView.OnItemSelectedListener {
 
     private EditText etTrafficVolume, etAverageSpeed, etNotes;
     private Spinner spnrTrafficLevel;
     private Button btnSubmit;
-    private Meteor mMeteor;
     private static String TAG = "statusSend";
     final List<String> categories = new ArrayList<String>();
-
+    ComWithServer comWithServer;
+    final Map<String, Object> values = new HashMap<String, Object>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,25 +38,14 @@ public class StatusSend extends AppCompatActivity implements MeteorCallback {
 
 
         init();
+
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mMeteor.isConnected()){
-                    final Map<String, Object> values = new HashMap<String, Object>();
-                    spnrTrafficLevel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            Toast.makeText(getApplicationContext(), position, Toast.LENGTH_SHORT).show();
-                            values.put("level", categories.get(position));
-                            Log.d(TAG, ""+position);
-                        }
+                Toast.makeText(getApplicationContext(), "pressed", Toast.LENGTH_SHORT).show();
 
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-
-                        }
-                    });
-                    values.put("averageSpeed",etAverageSpeed.getText().toString());
+                if (comWithServer.isConnected()) {
+                    values.put("averageSpeed", etAverageSpeed.getText().toString());
                     values.put("trafficVolume", etTrafficVolume.getText().toString());
                     values.put("note", etNotes.getText().toString());
                     values.put("filePath", null);
@@ -64,44 +53,37 @@ public class StatusSend extends AppCompatActivity implements MeteorCallback {
                     values.put("longitude", 90);
                     values.put("address", "BUET");
                     Object[] queryParams = {values};
-                    mMeteor.call("statuses.insert",queryParams,new ResultListener() {
+                    comWithServer.callFucntion("statuses.insert", queryParams);
 
-                        @Override
-                        public void onSuccess(String result) {
-                            Log.d(TAG, "success  in inserting" );
-
-                        }
-
-                        @Override
-                        public void onError(String error, String reason, String details) {
-                            Log.d(TAG, "Error: " + error + " " + reason + " " + details);
-
-                        }
-                    });
                 }
             }
         });
+
+
     }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Toast.makeText(getApplicationContext(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+        values.put("level", categories.get(position));
+        Log.v(TAG, "" + position);
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
 
     private void init() {
 
-
+        comWithServer = new ComWithServer(this);
         etAverageSpeed = (EditText) findViewById(R.id.etAverageSpeed);
         etTrafficVolume = (EditText) findViewById(R.id.etTrafficVolume);
         etNotes = (EditText) findViewById(R.id.etNotes);
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
-        spnrTrafficLevel=(Spinner) findViewById(R.id.spnrTrafficLevel);
-
-        // create a new instance
-        mMeteor = new Meteor(this, "ws://192.168.0.102:3000/websocket");
-
-        // register the callback that will handle events and receive messages
-        mMeteor.addCallback(this);
-
-        // establish the connection
-        mMeteor.connect();
-
-
+        spnrTrafficLevel = (Spinner) findViewById(R.id.spnrTrafficLevel);
 
 
         // Spinner Drop down elements
@@ -120,35 +102,12 @@ public class StatusSend extends AppCompatActivity implements MeteorCallback {
 
         // attaching data adapter to spinner
         spnrTrafficLevel.setAdapter(dataAdapter);
-    }
 
-    @Override
-    public void onConnect(boolean signedInAutomatically) {
 
-    }
 
-    @Override
-    public void onDisconnect() {
+        spnrTrafficLevel.setOnItemSelectedListener(this);
 
     }
 
-    @Override
-    public void onException(Exception e) {
 
-    }
-
-    @Override
-    public void onDataAdded(String collectionName, String documentID, String newValuesJson) {
-
-    }
-
-    @Override
-    public void onDataChanged(String collectionName, String documentID, String updatedValuesJson, String removedValuesJson) {
-
-    }
-
-    @Override
-    public void onDataRemoved(String collectionName, String documentID) {
-
-    }
 }
