@@ -1,7 +1,6 @@
 package com.example.t.roadsandhighway.Activity;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -34,10 +33,10 @@ public class GpsService extends Service {
     @Override
     public void onCreate() {
         listener = new LocationListener() {
+
             @Override
             public void onLocationChanged(Location location) {
-                Log.v(TAG, String.valueOf(location.getLatitude())+String.valueOf(location.getLongitude()));
-
+                Log.v(TAG, String.valueOf("location: "+location.getLatitude())+"  "+String.valueOf(location.getLongitude()));
             }
 
             @Override
@@ -81,3 +80,4 @@ public class GpsService extends Service {
 
 
 }
+

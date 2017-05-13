@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements MeteorCallback {
 
 
         // create a new instance
-        mMeteor = new Meteor(this, "ws://192.168.0.109:3000/websocket");
+        mMeteor = new Meteor(this, "ws://192.168.0.105:3000/websocket");
 
         // register the callback that will handle events and receive messages
         mMeteor.addCallback(this);

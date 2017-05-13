@@ -39,13 +39,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ocr"
-        android:layout_below="@+id/test"
+        android:layout_below="@+id/sendsms"
         android:text="OCRtest"
         android:layout_centerHorizontal="true"/>
     <ToggleButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/sendsms"
+        android:layout_below="@+id/ocr"
         android:layout_centerHorizontal="true"
         android:text="gpsEnable"
         android:id="@+id/toggle"
