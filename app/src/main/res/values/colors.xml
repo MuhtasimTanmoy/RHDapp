@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <color name="white">#FFFFFF</color>
+
+    <color name="telenorBlue">#00ACE7</color>
+    <color name="darkBlue">#0091D2</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="white">#FFFFFF</color>
+    <!-- Green -->
+    <color name="green_temp">#23A96E</color>
+    <color name="green_dark">#159204</color>
+    <color name="bright_green">#02D8B0</color>
+    <color name="button_green">#10a54a</color>
+    <color name="black_20_eprcent">#000020 </color>
+    <color name="white_blurry">#FFFF00</color>
+
+
+    <color name="orange">#ff5b00</color>
+    <color name="dark_lilac">#5642be</color>
+    <color name="violet">#a61766</color>
+    <color name="ash">#BEBEBE</color>
+    <color name="light_black">#3e3e3e</color>
+    <color name="dark_violet">#2c048f</color>
 
 </resources>

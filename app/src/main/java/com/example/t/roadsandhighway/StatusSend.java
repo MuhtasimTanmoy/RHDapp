@@ -1,6 +1,5 @@
 package com.example.t.roadsandhighway;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,9 +16,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import im.delight.android.ddp.Meteor;
-import im.delight.android.ddp.MeteorCallback;
-import im.delight.android.ddp.ResultListener;
 
 public class StatusSend extends AppCompatActivity   implements AdapterView.OnItemSelectedListener {
 

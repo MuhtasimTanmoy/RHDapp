@@ -4,4 +4,16 @@
     <string name="content">Content</string>
     <string name="send">Send SMS</string>
 
+    <string name="accept">By signing up you accept all the terms including our privacy statement</string>
+    <string name="haveaccount">Already have an account?</string>
+    <string name="informationstore">Your Information will be stored in DurbinLabs</string>
+    <string name="contentdevelop">CONTENT AND APPLICATION DEVELOPED BY</string>
+    <string name="passwordforget">Forgot password?</string>
+
+    <string name="username">Username</string>
+    <string name="phonenumber">Phone Number</string>
+    <string name="password">Password</string>
+    <string name="confirmpassword">Confirm Password</string>
+    <string name="classselection">Select Class</string>
+
 </resources>

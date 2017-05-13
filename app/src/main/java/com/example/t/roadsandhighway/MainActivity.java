@@ -19,18 +19,21 @@ import im.delight.android.ddp.MeteorCallback;
 import im.delight.android.ddp.ResultListener;
 import im.delight.android.ddp.db.Collection;
 import im.delight.android.ddp.db.Document;
+import im.delight.android.ddp.db.memory.InMemoryDatabase;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
 
         Intent intent = new Intent(getApplicationContext(), SignIn.class);
         startActivity(intent);
 
     }
+
 
 }
