@@ -40,7 +40,7 @@ public class Home extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
-        number="01770652767";
+        number="04445650567";
         bottomBar= (BottomBar) findViewById(R.id.bottomBar);
         fab=(FloatingActionButton) findViewById(R.id.triggerMessage);
 
@@ -49,7 +49,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onTabSelected(@IdRes int tabId) {
                 if(tabId==R.id.tab_maps){
-                    //fragment=new MapFragment();
+                    fragment=new MapFragment();
                 }
                 else if(tabId==R.id.tab_info){
                     fragment=new ProfileFragment();

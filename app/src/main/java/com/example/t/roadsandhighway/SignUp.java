@@ -35,7 +35,7 @@ public class SignUp extends AppCompatActivity implements MeteorCallback {
         btnSingUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Not granted", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getApplicationContext(), "Not granted", Toast.LENGTH_SHORT).show();
                 if (mMeteor.isConnected() && etPassword.getText().toString().equals(etConfirmPassword.getText().toString())) {
                     final Map<String, Object> values = new HashMap<String, Object>();
 //                    username: data.username,
