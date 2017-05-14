@@ -48,6 +48,9 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
                         }
                     });
 
+                }else{
+                    Log.d(TAG, "not connected " );
+
                 }
             }
         });
@@ -62,7 +65,7 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
 
 
         // create a new instance
-        mMeteor = new Meteor(this, "ws://192.168.0.106:3000/websocket");
+        mMeteor = new Meteor(this, "ws://52.175.255.59/websocket");
 
         // register the callback that will handle events and receive messages
         mMeteor.addCallback(this);

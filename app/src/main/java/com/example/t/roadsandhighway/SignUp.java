@@ -1,5 +1,6 @@
 package com.example.t.roadsandhighway;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,24 +50,29 @@ public class SignUp extends AppCompatActivity implements MeteorCallback {
                     values.put("password", etPassword.getText().toString());
                     values.put("contactNo", etCoNtactNo.getText().toString());
                     values.put("address",etAddress.getText().toString());
-                    values.put("latitude", etLaitude.getText().toString());
-                    values.put("longitude", etLongitude.getText().toString());
+                    values.put("latitude", Double.parseDouble(etLaitude.getText().toString()));
+                    values.put("longitude", Double.parseDouble(etLongitude.getText().toString()));
                     Object[] queryParams = {values};
                     mMeteor.call("user.create", queryParams, new ResultListener() {
 
                         @Override
                         public void onSuccess(String result) {
                             Log.d(TAG, "success  in inserting");
+                            Intent intent = new Intent(getApplicationContext(), SignIn.class);
+                            startActivity(intent);
+
 
                         }
 
                         @Override
                         public void onError(String error, String reason, String details) {
                             Log.d(TAG, "Error: " + error + " " + reason + " " + details);
-
+                            Toast.makeText(getApplicationContext(), "error sign up", Toast.LENGTH_SHORT).show();
                         }
                     });
 
+                }else{
+                    Toast.makeText(getApplicationContext(), "Failure ", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -86,7 +92,7 @@ public class SignUp extends AppCompatActivity implements MeteorCallback {
 
 
         // create a new instance
-        mMeteor = new Meteor(this, "ws://192.168.0.102:3000/websocket");
+        mMeteor = new Meteor(this, "ws://52.175.255.59/websocket");
 
         // register the callback that will handle events and receive messages
         mMeteor.addCallback(this);

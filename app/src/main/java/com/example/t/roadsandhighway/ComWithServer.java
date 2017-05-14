@@ -17,7 +17,7 @@ public class ComWithServer implements MeteorCallback {
     private boolean success;
 
     ComWithServer(Context context){
-        mMeteor = new Meteor(context, "ws://192.168.0.106:3000/websocket");
+        mMeteor = new Meteor(context, "ws://52.175.255.59/websocket");
 
         mMeteor.addCallback(this);
 
