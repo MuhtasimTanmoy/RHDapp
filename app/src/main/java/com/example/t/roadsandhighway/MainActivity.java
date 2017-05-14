@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
 
 
-        Intent intent = new Intent(getApplicationContext(), SignIn.class);
+        Intent intent = new Intent(getApplicationContext(), Home.class);
         startActivity(intent);
 
     }

@@ -1,0 +1,18 @@
+<tabs>
+
+    <tab
+        id="@+id/tab_favorites"
+        icon="@drawable/paper"
+        title="Favorites"
+        barColorWhenSelected="#f1efef"/>
+    <tab
+        id="@+id/tab_maps"
+        icon="@drawable/map"
+        title="Maps"
+        barColorWhenSelected="#00ACE7"/>
+    <tab
+        id="@+id/tab_info"
+        icon="@drawable/info"
+        title="Info"
+        barColorWhenSelected="#f5f7f7"/>
+</tabs>
