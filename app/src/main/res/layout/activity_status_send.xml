@@ -29,12 +29,10 @@ android:background="@color/white"
             android:textSize="32dp"
             android:layout_gravity="center_horizontal"
             />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="..."
-            android:textSize="20dp"
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/below"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="78dp"
 

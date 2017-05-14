@@ -60,7 +60,7 @@ public class SignUp extends AppCompatActivity implements MeteorCallback {
                         @Override
                         public void onSuccess(String result) {
                             Log.d(TAG, "success  in inserting");
-                            Intent intent = new Intent(getApplicationContext(), StatusSend.class);
+                            Intent intent = new Intent(getApplicationContext(), Home.class);
                             startActivity(intent);
 
                         }
@@ -68,6 +68,8 @@ public class SignUp extends AppCompatActivity implements MeteorCallback {
                         @Override
                         public void onError(String error, String reason, String details) {
                             Log.d(TAG, "Error: " + error + " " + reason + " " + details);
+                            Toast.makeText(getApplicationContext(), "Enter valid information", Toast.LENGTH_SHORT).show();
+
 
                         }
                     });
@@ -99,7 +101,7 @@ public class SignUp extends AppCompatActivity implements MeteorCallback {
 
 
         // create a new instance
-        mMeteor = new Meteor(this, "ws://192.168.0.106:3000/websocket");
+        mMeteor = new Meteor(this, "ws://52.175.255.59/websocket");
 
         // register the callback that will handle events and receive messages
         mMeteor.addCallback(this);

@@ -1,18 +1,21 @@
 <tabs>
 
     <tab
+
         id="@+id/tab_send"
         icon="@drawable/paper"
         title="Send"
-        barColorWhenSelected="#f1efef"/>
+        barColorWhenSelected="@color/telenorBlue"/>
     <tab
         id="@+id/tab_maps"
         icon="@drawable/map"
         title="Maps"
-        barColorWhenSelected="#00ACE7"/>
+        barColorWhenSelected="@color/telenorBlue"/>
     <tab
         id="@+id/tab_info"
         icon="@drawable/info"
         title="Info"
-        barColorWhenSelected="#f5f7f7"/>
+        height="16dp"
+        width="16dp"
+        barColorWhenSelected="@color/telenorBlue"/>
 </tabs>

@@ -3,6 +3,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+
     <!-- This could be your fragment container, or something -->
     <FrameLayout
         android:id="@+id/contentContainer"
@@ -11,12 +13,35 @@
         android:layout_above="@+id/bottomBar"
         android:background="@color/white"/>
 
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="45dp"
+        android:id="@+id/triggerMessage"
+        app:rippleColor="@color/telenorBlue"
+        app:fabSize="normal"
+        android:src="@drawable/envelope"
+        />
+
+
     <com.roughike.bottombar.BottomBar
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
         android:layout_alignParentBottom="true"
-        app:bb_titleTextAppearance="@color/telenorBlue"
+        app:bb_titleTextAppearance="@color/black_20_eprcent"
+        app:bb_activeTabColor="@color/white"
         app:bb_tabXmlResource="@xml/bottombar_tabs" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@color/telenorBlue"
+        android:layout_alignParentBottom="true"
+
+        ></FrameLayout>
 
 </RelativeLayout>
