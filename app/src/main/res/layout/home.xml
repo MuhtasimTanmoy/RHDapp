@@ -9,13 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomBar"
-        android:background="@color/bright_green"/>
+        android:background="@color/white"/>
 
     <com.roughike.bottombar.BottomBar
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
+        app:bb_titleTextAppearance="@color/telenorBlue"
         app:bb_tabXmlResource="@xml/bottombar_tabs" />
 
 </RelativeLayout>

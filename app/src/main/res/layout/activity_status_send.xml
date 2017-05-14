@@ -1,69 +1,142 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
 
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.design.widget.CoordinatorLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/white"
+    android:windowSoftInputMode="adjustPan"
+    >
+
+
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    tools:context="com.example.t.roadsandhighway.StatusSend">
-
-
-    <LinearLayout
+    android:orientation="vertical">
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
-
+        android:layout_height="150dp"
+        android:background="@color/telenorBlue"
+        >
         <TextView
-            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Submit Status"
-            tools:layout_editor_absoluteX="136dp"
-            tools:layout_editor_absoluteY="28dp" />
-
-        <Spinner
-            android:id="@+id/spnrTrafficLevel"
-            android:layout_width="362dp"
+            android:textColor="@color/white"
+            android:layout_marginTop="32dp"
+            android:text="Submit Road Status"
+            android:textSize="32dp"
+            android:layout_gravity="center_horizontal"
+            />
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="66dp" />
+            android:textColor="@color/white"
+            android:text="..."
+            android:textSize="20dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="78dp"
+
+            />
+
+
+    </FrameLayout>
+
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:isScrollContainer="false">
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="25dp"
+    android:weightSum="1">
+
+
+
+
+
+
+
+    <Spinner
+        android:id="@+id/spnrTrafficLevel"
+        android:layout_width="362dp"
+        android:layout_height="wrap_content"
+        />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:maxLines="1"
             android:id="@+id/etTrafficVolume"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
             android:hint="Traffic Volume"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"/>
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/etAverageSpeed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:id="@+id/etAverageSpeed"
             android:ems="10"
             android:hint="Average Speed"
             android:inputType="textPersonName" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/etNotes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="15sp"
             android:ems="10"
+            android:id="@+id/etNotes"
             android:hint="Notes"
             android:inputType="textPersonName" />
-
-        <Button
-            android:id="@+id/btnSubmit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Submit" />
+    </android.support.design.widget.TextInputLayout>
 
 
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
+        android:text="INFORM"
+        android:textColor="@color/white"
+        android:background="@drawable/bluebutton"
+        android:id="@+id/btnSubmit" />
+
+
+
+</LinearLayout>
+</ScrollView>
     </LinearLayout>
-</RelativeLayout>
+
+
+
+</android.support.design.widget.CoordinatorLayout>

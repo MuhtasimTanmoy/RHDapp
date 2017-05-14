@@ -28,11 +28,30 @@ public class MainActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.splash_screen_layout);
 
 
-        Intent intent = new Intent(getApplicationContext(),Home.class);
-        startActivity(intent);
+        Thread timerThread = new Thread() {
+            public void run() {
+                try {
+                    sleep(1800);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    Intent intent = new Intent(MainActivity.this, Home.class);
+                    startActivity(intent);
+                }
+            }
+        };
+        timerThread.start();
 
+
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        finish();
     }
 
 

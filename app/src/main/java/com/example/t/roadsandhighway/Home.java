@@ -26,10 +26,10 @@ public class Home extends AppCompatActivity {
             @Override
             public void onTabSelected(@IdRes int tabId) {
                 if(tabId==R.id.tab_maps){
-                    fragment=new MapFragment();
+                    //fragment=new MapFragment();
                 }
                 else if(tabId==R.id.tab_info){
-                    fragment=new MapFragment();
+                    //fragment=new MapFragment();
 //                    fragment= new StatusSend();
 
                 }
