@@ -52,7 +52,7 @@ public class Home extends AppCompatActivity {
                     //fragment=new MapFragment();
                 }
                 else if(tabId==R.id.tab_info){
-                    //fragment=new MapFragment();
+                    fragment=new ProfileFragment();
 //                    fragment= new StatusSend();
 
                 }

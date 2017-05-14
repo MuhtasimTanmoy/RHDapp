@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity  {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
-                    Intent intent = new Intent(MainActivity.this, SignIn.class);
+                    Intent intent = new Intent(MainActivity.this, Home.class);
                     startActivity(intent);
                 }
             }
