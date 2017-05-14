@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.SEND_SMS"></uses-permission>
+    <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
@@ -22,21 +22,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.SmsActivity">
+        <activity android:name=".Activity.SmsActivity"></activity>
+        <activity android:name=".Activity.OcrActivity"></activity>
 
-        </activity>
-        <activity android:name=".Activity.OcrActivity">
+        <service android:name=".Activity.GpsService"></service>
 
-        </activity>
-        <service android:name=".Activity.GpsService"> </service>
-
-        <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES"
-            android:value="ocr"/>
+        <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="ocr" />
 
         <activity android:name=".SignIn" />
         <activity android:name=".StatusSend" />
-        <activity android:name=".SignUp"></activity>
-
+        <activity android:name=".SignUp" />
+        <activity android:name=".MessageDialogueActivity"></activity>
     </application>
 
 </manifest>
