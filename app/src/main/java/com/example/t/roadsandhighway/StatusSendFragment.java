@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class StatusSend extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class StatusSendFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
     private EditText etTrafficVolume, etAverageSpeed, etNotes;
     private Spinner spnrTrafficLevel;
@@ -31,10 +31,18 @@ public class StatusSend extends AppCompatActivity implements AdapterView.OnItemS
     ComWithServer comWithServer;
     final Map<String, Object> values = new HashMap<String, Object>();
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_status_send);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        View v=inflater.inflate(R.layout.activity_status_send,container,false);
+
+        etAverageSpeed = (EditText) v.findViewById(R.id.etAverageSpeed);
+        etTrafficVolume = (EditText) v.findViewById(R.id.etTrafficVolume);
+        etNotes = (EditText) v.findViewById(R.id.etNotes);
+        btnSubmit = (Button) v.findViewById(R.id.btnSubmit);
+        spnrTrafficLevel = (Spinner) v.findViewById(R.id.spnrTrafficLevel);
+
 
 
         init();
@@ -42,7 +50,8 @@ public class StatusSend extends AppCompatActivity implements AdapterView.OnItemS
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), Boolean.toString(comWithServer.isConnected()), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), Boolean.toString(comWithServer.isConnected()), Toast.LENGTH_SHORT).show();
+
 
                 if (comWithServer.isConnected()) {
                     values.put("averageSpeed", etAverageSpeed.getText().toString());
@@ -58,7 +67,7 @@ public class StatusSend extends AppCompatActivity implements AdapterView.OnItemS
                 }
             }
         });
-
+        return v;
     }
 
 
@@ -79,13 +88,9 @@ public class StatusSend extends AppCompatActivity implements AdapterView.OnItemS
 
     private void init() {
 
-        comWithServer = new ComWithServer(getApplicationContext());
+        comWithServer = new ComWithServer(getContext());
 
-        etAverageSpeed = (EditText) findViewById(R.id.etAverageSpeed);
-        etTrafficVolume = (EditText) findViewById(R.id.etTrafficVolume);
-        etNotes = (EditText) findViewById(R.id.etNotes);
-        btnSubmit = (Button) findViewById(R.id.btnSubmit);
-        spnrTrafficLevel = (Spinner) findViewById(R.id.spnrTrafficLevel);
+
 
         // Spinner Drop down elements
         categories.add("TJ-1");
@@ -96,7 +101,7 @@ public class StatusSend extends AppCompatActivity implements AdapterView.OnItemS
         categories.add("TJ-6");
 
         // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, categories);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, categories);
 
         // Drop down layout style - list view with radio button
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

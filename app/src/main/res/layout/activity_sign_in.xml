@@ -77,8 +77,8 @@
         android:layout_marginTop="15dp"
         android:layout_gravity="center"
         android:text="LOG IN"
-        android:textColor="@color/telenorBlue"
-        android:background="@drawable/whitebutton"
+        android:textColor="@color/white"
+        android:background="@drawable/bluebutton"
         android:id="@+id/btnSignIn" />
 
     <Button
@@ -88,8 +88,8 @@
         android:layout_gravity="center"
         android:text="SIGN UP"
         android:textSize="15sp"
-        android:textColor="@color/white"
-        android:background="@drawable/bluebutton"
+        android:textColor="@color/telenorBlue"
+        android:background="@drawable/whitebutton"
         android:id="@+id/btnSignUp" />
 
 

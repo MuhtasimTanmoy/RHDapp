@@ -10,8 +10,8 @@
 
             <item android:bottom="2dp" android:left="2dp">
                 <shape>
-                    <stroke android:width="2dp" android:color="#ffffff" />
-                    <corners android:radius="4dp" />
+                    <stroke android:width="2dp" android:color="#a7a6a6" />
+                    <corners android:radius="20dp" />
                     <padding android:bottom="10dp" android:left="10dp"
                         android:right="10dp" android:top="10dp" />
                 </shape>

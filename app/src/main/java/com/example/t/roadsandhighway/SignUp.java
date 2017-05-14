@@ -1,5 +1,6 @@
 package com.example.t.roadsandhighway;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,7 +21,7 @@ public class SignUp extends AppCompatActivity implements MeteorCallback {
 
 
     private EditText etUsername, etPassword, etConfirmPassword, etCoNtactNo, etLaitude, etLongitude, etAddress;
-    private Button btnSingUp;
+    private Button btnSingUp,btnLogIn;
     private Meteor mMeteor;
     private static String TAG = "signUpPage";
 
@@ -34,6 +35,7 @@ public class SignUp extends AppCompatActivity implements MeteorCallback {
         btnSingUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Not granted", Toast.LENGTH_SHORT).show();
                 if (mMeteor.isConnected() && etPassword.getText().toString().equals(etConfirmPassword.getText().toString())) {
                     final Map<String, Object> values = new HashMap<String, Object>();
 //                    username: data.username,
@@ -49,14 +51,17 @@ public class SignUp extends AppCompatActivity implements MeteorCallback {
                     values.put("password", etPassword.getText().toString());
                     values.put("contactNo", etCoNtactNo.getText().toString());
                     values.put("address",etAddress.getText().toString());
-                    values.put("latitude", etLaitude.getText().toString());
-                    values.put("longitude", etLongitude.getText().toString());
+                    values.put("latitude", Double.parseDouble(etLaitude.getText().toString()));
+                    values.put("longitude", Double.parseDouble(etLongitude.getText().toString()));
                     Object[] queryParams = {values};
+
                     mMeteor.call("user.create", queryParams, new ResultListener() {
 
                         @Override
                         public void onSuccess(String result) {
                             Log.d(TAG, "success  in inserting");
+                            Intent intent = new Intent(getApplicationContext(), StatusSend.class);
+                            startActivity(intent);
 
                         }
 
@@ -71,6 +76,13 @@ public class SignUp extends AppCompatActivity implements MeteorCallback {
             }
 
         });
+        btnLogIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SignIn.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -80,13 +92,14 @@ public class SignUp extends AppCompatActivity implements MeteorCallback {
         etConfirmPassword = (EditText) findViewById(R.id.etSignUpConfirmPasword);
         etCoNtactNo = (EditText) findViewById(R.id.etSignUpContactNo);
         etLaitude = (EditText) findViewById(R.id.etSignUpLatitude);
-        etAddress = (EditText) findViewById(R.id.etSignUuAddress);
+        etAddress = (EditText) findViewById(R.id.etSignUpAddress);
         etLongitude = (EditText) findViewById(R.id.etSignUpLongitude);
-        btnSingUp = (Button) findViewById(R.id.btnSignUp);
+        btnSingUp = (Button) findViewById(R.id.signUp);
+        btnLogIn= (Button) findViewById(R.id.signin);
 
 
         // create a new instance
-        mMeteor = new Meteor(this, "ws://192.168.0.102:3000/websocket");
+        mMeteor = new Meteor(this, "ws://192.168.0.106:3000/websocket");
 
         // register the callback that will handle events and receive messages
         mMeteor.addCallback(this);

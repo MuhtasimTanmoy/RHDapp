@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import im.delight.android.ddp.Meteor;
 import im.delight.android.ddp.MeteorCallback;
 import im.delight.android.ddp.ResultListener;
@@ -15,6 +17,7 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
 
     private EditText etUsername, etPassword;
     private Button btnSignIn;
+    private Button btnSignUp;
     private Meteor mMeteor;
     private static String TAG = "signInPage";
 
@@ -28,6 +31,8 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Toast.makeText(getApplicationContext(), Boolean.toString(mMeteor.isConnected()), Toast.LENGTH_SHORT).show();
                 if (mMeteor.isConnected()) {
                     String userName = etUsername.getText().toString();
                     String passWord = etPassword.getText().toString();
@@ -45,10 +50,19 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
                         public void onError(String error, String reason, String details) {
                             Log.d(TAG, "Error: " + error + " " + reason + " " + details);
 
+
                         }
                     });
 
                 }
+            }
+        });
+
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SignUp.class);
+                startActivity(intent);
             }
         });
 
@@ -59,6 +73,7 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
         btnSignIn = (Button) findViewById(R.id.btnSignIn);
+        btnSignUp = (Button) findViewById(R.id.btnSignUp);
 
 
         // create a new instance

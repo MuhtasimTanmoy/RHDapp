@@ -1,9 +1,9 @@
 <tabs>
 
     <tab
-        id="@+id/tab_favorites"
+        id="@+id/tab_send"
         icon="@drawable/paper"
-        title="Favorites"
+        title="Send"
         barColorWhenSelected="#f1efef"/>
     <tab
         id="@+id/tab_maps"

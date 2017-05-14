@@ -8,7 +8,8 @@
         android:id="@+id/contentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottomBar" />
+        android:layout_above="@+id/bottomBar"
+        android:background="@color/bright_green"/>
 
     <com.roughike.bottombar.BottomBar
         android:id="@+id/bottomBar"
