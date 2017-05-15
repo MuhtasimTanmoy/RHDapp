@@ -37,6 +37,8 @@
         <activity android:name=".StatusSend" />
         <activity android:name=".Home"/>
         <activity android:name=".SignUp"></activity>
+        <activity android:name=".Administer"></activity>
+
 
 
         <!--

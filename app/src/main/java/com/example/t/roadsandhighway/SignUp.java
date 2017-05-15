@@ -60,7 +60,7 @@ public class SignUp extends AppCompatActivity implements MeteorCallback {
                         @Override
                         public void onSuccess(String result) {
                             Log.d(TAG, "success  in inserting");
-                            Intent intent = new Intent(getApplicationContext(), Home.class);
+                            Intent intent = new Intent(getApplicationContext(), Administer.class);
                             startActivity(intent);
 
                         }
@@ -97,7 +97,7 @@ public class SignUp extends AppCompatActivity implements MeteorCallback {
         etAddress = (EditText) findViewById(R.id.etSignUpAddress);
         etLongitude = (EditText) findViewById(R.id.etSignUpLongitude);
         btnSingUp = (Button) findViewById(R.id.signUp);
-        btnLogIn= (Button) findViewById(R.id.signin);
+        btnLogIn= (Button) findViewById(R.id.signIn);
 
 
         // create a new instance

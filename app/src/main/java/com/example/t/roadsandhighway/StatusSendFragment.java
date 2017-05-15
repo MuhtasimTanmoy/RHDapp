@@ -50,7 +50,7 @@ public class StatusSendFragment extends Fragment implements AdapterView.OnItemSe
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), Boolean.toString(comWithServer.isConnected()), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Delivered", Toast.LENGTH_SHORT).show();
 
 
                 if (comWithServer.isConnected()) {

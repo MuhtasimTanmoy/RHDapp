@@ -1,0 +1,99 @@
+
+
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:windowSoftInputMode="adjustPan"
+    >
+
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@color/telenorBlue"
+            >
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Welcome"
+                android:textColor="@color/white"
+                android:textSize="32sp" />
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="155dp"
+            android:layout_height="136dp"
+            android:maxHeight="60dp"
+            android:src="@drawable/minister"
+            android:layout_gravity="center"/>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="#fff"
+            android:clickable="true"
+            android:elevation="4dp"
+            android:padding="20dp"
+            android:text="Welcome to “My RSP”.
+My RSP is Road Safety Program to ensure the safe and smooth traffic system in national highway.
+
+You will be pleased by knowing that the Ministry of Road, Transport and Bridge is dedicatedly active to ensure a fair, smooth and safe traffic system. The entire team of RHD, BRTA and Police are enormously doing number of activities to give you a safer journey.
+
+I believe that you will be same like us to expect and active to make the initiative successful. I wish best success to “My RSP”. " />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_gravity="center"
+            android:text="Thank You"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_gravity="center"
+            android:fontFamily="bold"
+            android:text="-Obaidul Quader"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"  android:layout_gravity="center"
+
+            android:text=" Honorable Minister of Ministry of Road Transport and Bridges"
+
+            />
+
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center"
+            android:text="Next"
+            android:textColor="@color/white"
+            android:background="@drawable/bluebutton"
+            android:id="@+id/ministerButton"
+            />
+
+
+
+    </LinearLayout>
+
+  </ScrollView>
+
+    </android.support.design.widget.CoordinatorLayout>

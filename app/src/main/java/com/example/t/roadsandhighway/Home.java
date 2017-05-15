@@ -41,6 +41,7 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
         number="04445650567";
+        //number="01770652767";
         bottomBar= (BottomBar) findViewById(R.id.bottomBar);
         fab=(FloatingActionButton) findViewById(R.id.triggerMessage);
 

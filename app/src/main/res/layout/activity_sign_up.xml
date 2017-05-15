@@ -98,9 +98,8 @@ android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:maxLength="11"
             android:lines="1"
-            android:hint="@string/phonenumber"
+            android:hint="Address"
             android:textSize="15sp"/>
 
     </android.support.design.widget.TextInputLayout>
@@ -167,7 +166,7 @@ android:background="@color/white"
         android:text="LOG IN"
         android:textColor="@color/telenorBlue"
         android:background="@drawable/whitebutton"
-        android:id="@+id/signin" />
+        android:id="@+id/signIn" />
 
 
 </LinearLayout>
