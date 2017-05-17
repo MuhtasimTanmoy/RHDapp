@@ -1,6 +1,12 @@
 package com.example.t.roadsandhighway;
 
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.DatabaseUtils;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +26,7 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
     private Button btnSignUp;
     private Meteor mMeteor;
     private static String TAG = "signInPage";
+    DbHelper dbHelper = new DbHelper(this);
 
 
     @Override
@@ -27,7 +34,10 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
+        checkPreviousLogIn();
         init();
+
+
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,11 +46,21 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
                 if (mMeteor.isConnected()) {
                     String userName = etUsername.getText().toString();
                     String passWord = etPassword.getText().toString();
-                    Log.d(TAG,userName+ " "+passWord );
+                    Log.d(TAG, userName + " " + passWord);
                     mMeteor.loginWithUsername(userName, passWord, new ResultListener() {
                         @Override
                         public void onSuccess(String result) {
                             Log.d(TAG, "Logged in: " + result);
+                            int row = dbHelper.numberOfRows();
+                            // Toast.makeText(getApplicationContext(), "  "+row , Toast.LENGTH_SHORT).show();
+                            if (row == 0) {
+
+                                dbHelper.insertLogInStatus("true");
+
+                            } else {
+                                dbHelper.updateStatus(1, "true");
+
+                            }
                             Intent intent = new Intent(getApplicationContext(), Home.class);
                             startActivity(intent);
 
@@ -50,7 +70,6 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
                         public void onError(String error, String reason, String details) {
                             Log.d(TAG, "Error: " + error + " " + reason + " " + details);
                             Toast.makeText(getApplicationContext(), "Enter valid information", Toast.LENGTH_SHORT).show();
-
 
 
                         }
@@ -70,6 +89,28 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
 
 
     }
+
+    private void checkPreviousLogIn() {
+        // Gets the data repository in write mode
+
+
+        int row = dbHelper.numberOfRows();
+        // Toast.makeText(getApplicationContext(), "  "+row , Toast.LENGTH_SHORT).show();
+        if (row == 1) {
+            Cursor res = dbHelper.getLoginStatus(1);
+            res.moveToFirst();
+            String status = res.getString(res.getColumnIndex("status"));
+            if (status.equals("true")) {
+                Intent intent = new Intent(getApplicationContext(), Home.class);
+                startActivity(intent);
+
+            }
+
+        }
+
+
+    }
+
 
     private void init() {
         etUsername = (EditText) findViewById(R.id.etUsername);

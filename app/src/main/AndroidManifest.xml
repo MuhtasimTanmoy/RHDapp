@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.SEND_SMS"></uses-permission>
+    <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
@@ -15,31 +15,27 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.SmsActivity">
+        <activity android:name=".Activity.SmsActivity"></activity>
+        <activity android:name=".Activity.OcrActivity"></activity>
 
-        </activity>
-        <activity android:name=".Activity.OcrActivity">
+        <service android:name=".Activity.GpsService"></service>
 
-        </activity>
-        <service android:name=".Activity.GpsService"> </service>
-
-        <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES"
-            android:value="ocr"/>
+        <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="ocr" />
 
         <activity android:name=".SignIn" />
         <activity android:name=".StatusSend" />
-        <activity android:name=".Home"/>
-        <activity android:name=".SignUp"></activity>
-        <activity android:name=".Administer"></activity>
-
-
+        <activity android:name=".Home" />
+        <activity android:name=".SignUp" />
+        <activity android:name=".Administer" />
 
         <!--
           The API key for Google Maps-based APIs is defined as a string resource.
@@ -48,12 +44,12 @@
           You need a different API key for each encryption key, including the release key that is used to
           sign the APK for publishing.
           You can define the keys for the debug and release targets in src/debug/ and src/release/.
-     -->
+        -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/apikey" />
 
-
+        <activity android:name=".UserTypeActivity"></activity>
     </application>
 
 </manifest>
