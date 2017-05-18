@@ -5,19 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.t.roadsandhighway.Activity.MainActivity">
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
+  <EditText
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/et"
+      android:hint="Place"
+      android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-    </android.support.design.widget.AppBarLayout>
+        android:id="@+id/seeLatLang"
+        android:text="See Lat Lang"
+        android:layout_below="@+id/et"
+        android:layout_centerHorizontal="true"/>
 
     <Button
         android:id="@+id/test"
