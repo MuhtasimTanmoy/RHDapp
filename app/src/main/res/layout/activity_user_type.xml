@@ -19,19 +19,130 @@
             android:paddingTop="25dp"
             android:weightSum="1">
 
-
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select user type" />
             <Spinner
                 android:id="@+id/spnrUsrTypeSpnr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvRHD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Administer Type" />
+            <Spinner
+                android:id="@+id/spnrUsrTypeRHD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvCE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select CE" />
+            <Spinner
+                android:id="@+id/spnrUsrTypeCE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvACE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select ACE" />
+            <Spinner
+                android:id="@+id/spnrUsrTypeACE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvSE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select SE" />
+            <Spinner
+                android:id="@+id/spnrUsrTypeSE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvEXN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select EXN" />
+            <Spinner
+                android:id="@+id/spnrUsrTypeEXN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvSDE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select SDE" />
+            <Spinner
+                android:id="@+id/spnrUsrTypeSDE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvAE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select AE" />
+            <Spinner
+                android:id="@+id/spnrUsrTypeAE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tvSO"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select SO" />
+            <Spinner
+                android:id="@+id/spnrUsrTypeSO"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/etUserTypeName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Name" />
+
+            <EditText
+                android:id="@+id/etUserTypeContact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="phone"
+                android:hint="Contact no"/>
+
+            <EditText
+                android:id="@+id/etUserTypeRegion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Region" />
+
+            <Button
+                android:id="@+id/btnUserTypeAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ADD" />
+
+
         </LinearLayout>
 
     </ScrollView>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select user type" />
+
 
 </android.support.design.widget.CoordinatorLayout>

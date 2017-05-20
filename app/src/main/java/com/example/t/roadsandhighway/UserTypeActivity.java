@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -14,19 +17,74 @@ import java.util.List;
 public class UserTypeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
 
-    private Spinner spnrUserType;
+    private Spinner spnrUserType, spnrRHD;
+    private Spinner[]  spnrRHDSub= new Spinner[7];
+    private TextView[] tvRHDSub=new TextView[7];
     final List<UserType> categories = new ArrayList<UserType>();
-
+    private TextView tvRHD;
+    private EditText etName, etContact,etRegion;
+    private Button btnAdd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_type);
         init();
 
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
     }
 
     private void init() {
         spnrUserType = (Spinner) findViewById(R.id.spnrUsrTypeSpnr);
+        tvRHD=(TextView) findViewById(R.id.tvRHD);
+        tvRHD.setVisibility(View.GONE);
+        spnrRHD=(Spinner) findViewById(R.id.spnrUsrTypeRHD);
+        spnrRHD.setVisibility(View.GONE);
+        spnrRHDSub[0]=(Spinner)findViewById(R.id.spnrUsrTypeCE);
+        spnrRHDSub[1]=(Spinner)findViewById(R.id.spnrUsrTypeACE);
+        spnrRHDSub[2]=(Spinner)findViewById(R.id.spnrUsrTypeSE);
+        spnrRHDSub[3]=(Spinner)findViewById(R.id.spnrUsrTypeEXN);
+        spnrRHDSub[4]=(Spinner)findViewById(R.id.spnrUsrTypeSDE);
+        spnrRHDSub[5]=(Spinner)findViewById(R.id.spnrUsrTypeAE);
+        spnrRHDSub[6]=(Spinner)findViewById(R.id.spnrUsrTypeSO);
+
+        tvRHDSub[0]=(TextView) findViewById(R.id.tvCE);
+        tvRHDSub[1]=(TextView) findViewById(R.id.tvACE);
+        tvRHDSub[2]=(TextView) findViewById(R.id.tvSE);
+        tvRHDSub[3]=(TextView) findViewById(R.id.tvEXN);
+        tvRHDSub[4]=(TextView) findViewById(R.id.tvSDE);
+        tvRHDSub[5]=(TextView) findViewById(R.id.tvAE);
+        tvRHDSub[6]=(TextView) findViewById(R.id.tvSO);
+
+
+        etName=(EditText)findViewById(R.id.etUserTypeName);
+        etContact=(EditText)findViewById(R.id.etUserTypeContact);
+        etRegion=(EditText)findViewById(R.id.etUserTypeRegion);
+
+        btnAdd=(Button)findViewById(R.id.btnUserTypeAdd);
+
+
+        etName.setVisibility(View.GONE);
+        etContact.setVisibility(View.GONE);
+        etRegion.setVisibility(View.GONE);
+        btnAdd.setVisibility(View.GONE);
+
+
+
+
+        for(int i=0;i<7;i++){
+            spnrRHDSub[i].setVisibility(View.GONE);
+            tvRHDSub[i].setVisibility(View.GONE);
+        }
+
+
+
+
         //add item in catagories
         categories.add(new UserType("passenger",1));
         categories.add(new UserType("police",2));
@@ -53,6 +111,7 @@ public class UserTypeActivity extends AppCompatActivity implements AdapterView.O
         spnrUserType.setOnItemSelectedListener(this);
 
 
+
     }
 
 
@@ -65,7 +124,46 @@ public class UserTypeActivity extends AppCompatActivity implements AdapterView.O
             Toast.makeText(getApplicationContext(), "userType", Toast.LENGTH_SHORT).show();
             if(categories.get(position).typeName.equals("RHD")){
                 Toast.makeText(getApplicationContext(), "RHD", Toast.LENGTH_SHORT).show();
+                spnrRHD.setVisibility(View.VISIBLE);
+                tvRHD.setVisibility(View.VISIBLE);
+                etName.setVisibility(View.VISIBLE);
+                etContact.setVisibility(View.VISIBLE);
+                etRegion.setVisibility(View.VISIBLE);
+                btnAdd.setVisibility(View.VISIBLE);
 
+
+                List<String> types = new ArrayList<String>();
+
+                types = new ArrayList<String>();
+                types.add("CE");
+                types.add("ACE");
+                types.add("SE");
+                types.add("EXN");
+                types.add("SDE");
+                types.add("AE");
+                types.add("SO");
+                types.add("Volunteer");
+
+                ArrayAdapter<String> dataAdapter;
+                dataAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, types);
+                dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spnrRHD.setAdapter(dataAdapter);
+                spnrRHD.setOnItemSelectedListener(this);
+
+
+
+            }
+        }
+        if(parent==spnrRHD){
+            for(int i=0;i<7;i++){
+                if(i<=position){
+                    tvRHDSub[i].setVisibility(View.VISIBLE);
+                    spnrRHDSub[i].setVisibility(View.VISIBLE);
+                }
+                else{
+                    tvRHDSub[i].setVisibility(View.GONE);
+                    spnrRHDSub[i].setVisibility(View.GONE);
+                }
             }
         }
 
