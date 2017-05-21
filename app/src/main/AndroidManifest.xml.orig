@@ -19,11 +19,15 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+<<<<<<< HEAD
         <activity android:name="MainActivity">
             <!--<intent-filter>-->
                 <!--<action android:name="android.intent.action.MAIN" />-->
-
+=======
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+>>>>>>> vacuum
 
                 <!--<category android:name="android.intent.category.LAUNCHER" />-->
             <!--</intent-filter>-->
@@ -38,7 +42,7 @@
             android:value="ocr" />
 
         <activity android:name=".SignIn" />
-        <activity android:name=".Activity.NearByPlaces" >
+        <activity android:name=".Activity.test" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -63,7 +67,7 @@
             android:value="@string/apikey" />
 
         <activity android:name=".UserTypeActivity" />
-        <activity android:name=".Activity.test" />
+        <activity android:name=".Activity.NearByPlaces" />
         <activity android:name=".Activity.ShowNearbyPlaces"></activity>
     </application>
 
