@@ -5,12 +5,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,24 +23,23 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.t.roadsandhighway.R;
+import com.google.android.gms.maps.model.LatLng;
 
-public class NearByPlaces extends Activity {
+import java.io.Serializable;
+import java.util.ArrayList;
 
-    // json object response url
-    private String urlJsonObj = "http://api.androidhive.info/volley/person_object.json";
+public class NearByPlaces extends AppCompatActivity {
 
-    // json array response url
-    private String urlJsonArry = "http://api.androidhive.info/volley/person_array.json";
 
+    private EditText etRadius;
+    private Button btnSubmit;
     private static String TAG = "Json";
     private Button btnMakeObjectRequest, btnMakeArrayRequest;
 
-    // Progress dialog
     private ProgressDialog pDialog;
 
     private TextView txtResponse;
 
-    // temporary string to show the parsed response
     private String jsonResponse;
 
     @Override
@@ -46,15 +47,17 @@ public class NearByPlaces extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_near_by_places);
 
-        btnMakeObjectRequest = (Button) findViewById(R.id.btnObjRequest);
-        btnMakeArrayRequest = (Button) findViewById(R.id.btnArrayRequest);
+
+        etRadius=(EditText) findViewById(R.id.etFindRadius) ;
+        btnSubmit= (Button) findViewById(R.id.btnFindSubmit);
         txtResponse = (TextView) findViewById(R.id.txtResponse);
+
 
         pDialog = new ProgressDialog(this);
         pDialog.setMessage("Please wait...");
         pDialog.setCancelable(false);
 
-        btnMakeObjectRequest.setOnClickListener(new View.OnClickListener() {
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -63,21 +66,24 @@ public class NearByPlaces extends Activity {
             }
         });
 
-        btnMakeArrayRequest.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                // making json array request
-                makeJsonArrayRequest();
-            }
-        });
 
     }
 
     /**
      * Method to make json object request where json response starts wtih {
      * */
+
+
+    ArrayList<LatLng> latLngs= new ArrayList<>();
+
     private void makeJsonObjectRequest() {
+
+        String urlJsonObj = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?" +
+                "location=-33.8670522,151.1957362&radius="+etRadius.getText().toString()+
+                "&type=restaurant&keyword=cruise&key="
+                +"AIzaSyAuDPbEB8OfpLi2aXcPa4KnTQyiuQurZ_Y";
+
 
         showpDialog();
 
@@ -86,24 +92,37 @@ public class NearByPlaces extends Activity {
 
             @Override
             public void onResponse(JSONObject response) {
-                Log.d(TAG, response.toString());
+                Log.d(TAG, "Json Data Found");
 
                 try {
-                    // Parsing json object response
-                    // response will be a json object
-                    String name = response.getString("name");
-                    String email = response.getString("email");
-                    JSONObject phone = response.getJSONObject("phone");
-                    String home = phone.getString("home");
-                    String mobile = phone.getString("mobile");
-
                     jsonResponse = "";
-                    jsonResponse += "Name: " + name + "\n\n";
-                    jsonResponse += "Email: " + email + "\n\n";
-                    jsonResponse += "Home: " + home + "\n\n";
-                    jsonResponse += "Mobile: " + mobile + "\n\n";
+                    JSONArray results=response.getJSONArray("results");
+                    for (int i = 0; i < results.length(); i++) {
+
+                        JSONObject place = (JSONObject) results
+                                .get(i);
+
+                        String name = place.getString("name");
+                        JSONObject geometry = place
+                                .getJSONObject("geometry");
+                        JSONObject location =geometry.getJSONObject("location");
+                        String lat=location.getString("lat").toString();
+                        String lng=location.getString("lng").toString();
+                        jsonResponse += "name: " + name + "\n";
+                        jsonResponse += "lat: " + location.getString("lat").toString() + "\n";
+                        jsonResponse += "lat: " + location.getString("lng").toString() + "\n";
+                        jsonResponse+="\n\n\n";
+
+                        latLngs.add(new LatLng(Double.parseDouble(lat), Double.parseDouble(lng)));
+                    }
 
                     txtResponse.setText(jsonResponse);
+
+                    Intent intent= new Intent(getApplicationContext(), ShowNearbyPlaces.class);
+                    intent.putExtra("locList", latLngs);
+                    Log.d(TAG, latLngs.size()+"");
+
+                    startActivity(intent);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -129,66 +148,6 @@ public class NearByPlaces extends Activity {
         AppController.getInstance().addToRequestQueue(jsonObjReq);
     }
 
-    /**
-     * Method to make json array request where response starts with [
-     * */
-    private void makeJsonArrayRequest() {
-
-        showpDialog();
-
-        JsonArrayRequest req = new JsonArrayRequest(urlJsonArry,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        Log.d(TAG, response.toString());
-
-                        try {
-                            // Parsing json array response
-                            // loop through each json object
-                            jsonResponse = "";
-                            for (int i = 0; i < response.length(); i++) {
-
-                                JSONObject person = (JSONObject) response
-                                        .get(i);
-
-                                String name = person.getString("name");
-                                String email = person.getString("email");
-                                JSONObject phone = person
-                                        .getJSONObject("phone");
-                                String home = phone.getString("home");
-                                String mobile = phone.getString("mobile");
-
-                                jsonResponse += "Name: " + name + "\n\n";
-                                jsonResponse += "Email: " + email + "\n\n";
-                                jsonResponse += "Home: " + home + "\n\n";
-                                jsonResponse += "Mobile: " + mobile + "\n\n\n";
-
-                            }
-
-                            txtResponse.setText(jsonResponse);
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(getApplicationContext(),
-                                    "Error: " + e.getMessage(),
-                                    Toast.LENGTH_LONG).show();
-                        }
-
-                        hidepDialog();
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_SHORT).show();
-                hidepDialog();
-            }
-        });
-
-        // Adding request to request queue
-        AppController.getInstance().addToRequestQueue(req);
-    }
 
     private void showpDialog() {
         if (!pDialog.isShowing())
@@ -199,4 +158,8 @@ public class NearByPlaces extends Activity {
         if (pDialog.isShowing())
             pDialog.dismiss();
     }
+
+
+
+
 }
