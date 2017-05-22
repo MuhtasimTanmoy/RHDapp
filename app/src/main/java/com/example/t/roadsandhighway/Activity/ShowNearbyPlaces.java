@@ -1,6 +1,7 @@
 package com.example.t.roadsandhighway.Activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.IntegerRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,11 +14,13 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.vision.face.LargestFaceFocusingProcessor;
 
 import java.util.ArrayList;
 
-public class ShowNearbyPlaces extends AppCompatActivity implements OnMapReadyCallback {
+public class    ShowNearbyPlaces extends AppCompatActivity implements OnMapReadyCallback {
 
 
     ArrayList<LatLng> latLngs;
@@ -48,6 +51,27 @@ public class ShowNearbyPlaces extends AppCompatActivity implements OnMapReadyCal
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
 
         }
+
+        Polyline line = googleMap.addPolyline(new PolylineOptions()
+                .addAll(latLngs)
+                .width(12)
+                .color(Color.parseColor("#05b1fb"))//Google maps blue color
+                .geodesic(true)
+        );
+
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(23.727358, 90.389717),15), 2000, null);
+
+
+        /*
+           for(int z = 0; z<list.size()-1;z++){
+                LatLng src= list.get(z);
+                LatLng dest= list.get(z+1);
+                Polyline line = mMap.addPolyline(new PolylineOptions()
+                .add(new LatLng(src.latitude, src.longitude), new LatLng(dest.latitude,   dest.longitude))
+                .width(2)
+                .color(Color.BLUE).geodesic(true));
+            }
+           */
     }
 
 

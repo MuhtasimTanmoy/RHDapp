@@ -38,7 +38,7 @@
             android:value="ocr" />
 
         <activity android:name=".SignIn" />
-        <activity android:name=".Activity.NearByPlaces" >
+        <activity android:name=".Activity.TripActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -63,7 +63,7 @@
             android:value="@string/apikey" />
 
         <activity android:name=".UserTypeActivity" />
-        <activity android:name=".Activity.test" />
+        <activity android:name=".Activity.NearByPlaces" />
         <activity android:name=".Activity.ShowNearbyPlaces"></activity>
     </application>
 
