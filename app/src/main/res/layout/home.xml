@@ -29,19 +29,14 @@
     <com.roughike.bottombar.BottomBar
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
+        android:layout_height="50dp"
+        app:bb_behavior="shifting"
+        app:bb_inActiveTabAlpha="0.7"
+        app:bb_activeTabAlpha="1"
+        app:bb_showShadow="true"
         android:layout_alignParentBottom="true"
-        app:bb_titleTextAppearance="@color/black_20_eprcent"
         app:bb_activeTabColor="@color/white"
         app:bb_tabXmlResource="@xml/bottombar_tabs" />
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:background="@color/telenorBlue"
-        android:layout_alignParentBottom="true"
 
-        ></FrameLayout>
 
 </RelativeLayout>

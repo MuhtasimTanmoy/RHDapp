@@ -20,6 +20,18 @@
         android:layout_below="@+id/et"
         android:layout_centerHorizontal="true"/>
 
+    <AutoCompleteTextView
+        android:layout_below="@+id/seeLatLang"
+        android:id="@+id/autoCompleteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="Please enter your place" >
+
+        <requestFocus />
+    </AutoCompleteTextView>
+
+
     <Button
         android:id="@+id/test"
         android:layout_width="wrap_content"

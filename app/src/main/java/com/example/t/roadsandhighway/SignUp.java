@@ -16,6 +16,7 @@ import java.util.Map;
 import im.delight.android.ddp.Meteor;
 import im.delight.android.ddp.MeteorCallback;
 import im.delight.android.ddp.ResultListener;
+import im.delight.android.ddp.db.memory.InMemoryDatabase;
 
 public class SignUp extends AppCompatActivity implements MeteorCallback {
 
@@ -101,7 +102,7 @@ public class SignUp extends AppCompatActivity implements MeteorCallback {
 
 
         // create a new instance
-        mMeteor = new Meteor(this, "ws://52.175.255.59/websocket");
+        mMeteor = new Meteor(this, "ws://52.175.255.59/websocket",new InMemoryDatabase());
 
         // register the callback that will handle events and receive messages
         mMeteor.addCallback(this);
@@ -127,11 +128,13 @@ public class SignUp extends AppCompatActivity implements MeteorCallback {
 
     @Override
     public void onDataAdded(String collectionName, String documentID, String newValuesJson) {
+        Log.d("Data", newValuesJson);
 
     }
 
     @Override
     public void onDataChanged(String collectionName, String documentID, String updatedValuesJson, String removedValuesJson) {
+
 
     }
 

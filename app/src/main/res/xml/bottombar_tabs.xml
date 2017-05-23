@@ -3,19 +3,23 @@
     <tab
 
         id="@+id/tab_send"
-        icon="@drawable/paper"
-        title="Send"
+        icon="@drawable/ic_home"
+        title="Inform"
+        inActiveColor="#b7b9b7"
+        activeColor="#FFFFFF"
         barColorWhenSelected="@color/telenorBlue"/>
     <tab
         id="@+id/tab_maps"
-        icon="@drawable/map"
+        icon="@drawable/ic_map"
         title="Maps"
+        inActiveColor="#b7b9b7"
+        activeColor="#FFFFFF"
         barColorWhenSelected="@color/telenorBlue"/>
     <tab
         id="@+id/tab_info"
-        icon="@drawable/info"
+        icon="@drawable/ic_profile"
         title="Info"
-        height="16dp"
-        width="16dp"
+        inActiveColor="#b7b9b7"
+        activeColor="#FFFFFF"
         barColorWhenSelected="@color/telenorBlue"/>
 </tabs>

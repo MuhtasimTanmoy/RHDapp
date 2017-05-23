@@ -39,14 +39,15 @@
 
         <activity android:name=".SignIn" />
         <activity android:name=".Activity.TripActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".StatusSend" />
-        <activity android:name=".Home" />
+        <activity android:name=".Home" >
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>        --></activity>
         <activity android:name=".SignUp" />
         <activity android:name=".Administer" />
 
@@ -65,6 +66,19 @@
         <activity android:name=".UserTypeActivity" />
         <activity android:name=".Activity.NearByPlaces" />
         <activity android:name=".Activity.ShowNearbyPlaces"></activity>
+
+        <activity android:name=".Activity.Autocomplete">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+
+
     </application>
 
 </manifest>

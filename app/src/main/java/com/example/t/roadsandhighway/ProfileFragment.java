@@ -36,6 +36,8 @@ public class ProfileFragment extends Fragment {
         return v;
     }
 
+
+
     private void init(View v) {
 
         btnSignOut=(Button) v.findViewById(R.id.btnProfileSignOut);

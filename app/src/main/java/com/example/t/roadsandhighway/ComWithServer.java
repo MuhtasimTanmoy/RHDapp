@@ -6,6 +6,7 @@ import android.util.Log;
 import im.delight.android.ddp.Meteor;
 import im.delight.android.ddp.MeteorCallback;
 import im.delight.android.ddp.ResultListener;
+import im.delight.android.ddp.db.memory.InMemoryDatabase;
 
 /**
  * Created by vacuum on 5/11/17.
@@ -17,7 +18,7 @@ public class ComWithServer implements MeteorCallback {
     private boolean success;
 
     ComWithServer(Context context){
-        mMeteor = new Meteor(context, "ws://52.175.255.59/websocket");
+        mMeteor = new Meteor(context, "ws://52.175.255.59/websocket",new InMemoryDatabase());
 
         mMeteor.addCallback(this);
 
