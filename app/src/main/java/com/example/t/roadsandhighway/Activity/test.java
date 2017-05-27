@@ -70,6 +70,7 @@ public class test extends AppCompatActivity implements MeteorCallback {
 
                     mMeteor.loginWithUsername("admin", "admin", new ResultListener() {
 
+
                         @Override
                         public void onSuccess(String result) {
                             String[] params = {};

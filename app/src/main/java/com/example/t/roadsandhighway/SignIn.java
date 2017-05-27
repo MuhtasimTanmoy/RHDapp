@@ -1,32 +1,21 @@
 package com.example.t.roadsandhighway;
 
-import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.JsonToken;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.t.roadsandhighway.Activity.NewsfeedOnMap;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.ObjectStreamClass;
 
 import im.delight.android.ddp.Meteor;
 import im.delight.android.ddp.MeteorCallback;
 import im.delight.android.ddp.ResultListener;
-import im.delight.android.ddp.db.Document;
 import im.delight.android.ddp.db.memory.InMemoryDatabase;
 
 public class SignIn extends AppCompatActivity implements MeteorCallback {
@@ -89,7 +78,9 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
 //
 //
 //                            }
-                            Intent intent = new Intent(getApplicationContext(), Home.class);
+//                            Intent intent = new Intent(getApplicationContext(), Home.class);
+                            Intent intent = new Intent(getApplicationContext(), NewsfeedOnMap.class);
+
                             startActivity(intent);
 
                         }
@@ -110,7 +101,9 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SignUp.class);
+                Intent intent = new Intent(getApplicationContext(), NewsfeedOnMap.class);
+//                Intent intent = new Intent(getApplicationContext(), SignUp.class);
+
                 startActivity(intent);
             }
         });

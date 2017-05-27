@@ -96,7 +96,7 @@
         </activity>
 
 
-        <activity android:name=".Activity.NewsfeedOnMap">
+        <activity android:name=".NewsfeedOnMap">
 
 
 
