@@ -21,12 +21,11 @@ import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.t.roadsandhighway.R;
+import com.example.t.roadsandhighway.SingleShotLocationProvider;
 import com.google.android.gms.maps.model.LatLng;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class NearByPlaces extends AppCompatActivity {

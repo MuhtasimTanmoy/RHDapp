@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -35,6 +36,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.t.roadsandhighway.R.color.*;
+
 /**
  * Created by t on 5/24/17.
  */
@@ -45,6 +48,8 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
     AutoCompleteTextView autoCompViewS;
     String desLatLng;
     String srcLatLng;
+
+    ImageButton gpsEnable;
 
     Button getRoute;
     private static String TAG = "auto";
@@ -82,7 +87,28 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
         list = new ArrayList<LatLng>();
         arrayList = new ArrayList<>();
 
+        gpsEnable= (ImageButton) v.findViewById(R.id.getFromGps);
+
         geoCode=new GeoCode(getContext());
+
+
+
+        gpsEnable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SingleShotLocationProvider.requestSingleUpdate(getContext(), new SingleShotLocationProvider.LocationCallback() {
+                    @Override
+                    public void onNewLocationAvailable(SingleShotLocationProvider.GPSCoordinates location) {
+                        Log.d("Location",location.toString());
+                        srcLatLng=String.valueOf(location.getLat()) + "," + String.valueOf(location.getLang());
+                        autoCompViewS.setText("Your location");
+                        gpsEnable.setBackgroundColor(R.color.telenorBlue);
+
+
+                    }
+                });
+            }
+        });
 
 
         getRoute.setOnClickListener(new View.OnClickListener() {

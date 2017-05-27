@@ -1,4 +1,4 @@
-package com.example.t.roadsandhighway.Activity;
+package com.example.t.roadsandhighway;
 
 import android.Manifest;
 import android.content.Context;
