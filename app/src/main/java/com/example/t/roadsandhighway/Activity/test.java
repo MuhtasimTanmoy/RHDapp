@@ -67,7 +67,9 @@ public class test extends AppCompatActivity implements MeteorCallback {
                 Log.d(TAG,"YYYYYYYYYYYYYYYYYY"+ String.valueOf(  mMeteor.isConnected()));
 
                 if (mMeteor.isConnected()) {
+
                     mMeteor.loginWithUsername("admin", "admin", new ResultListener() {
+
                         @Override
                         public void onSuccess(String result) {
                             String[] params = {};
@@ -75,13 +77,15 @@ public class test extends AppCompatActivity implements MeteorCallback {
 
                                 @Override
                                 public void onSuccess() {
+
                                    Log.d(TAG," onsuccess Yes");
 
-                                        Document[] documents = mMeteor.getDatabase().getCollection("Statuses").find();
 
-                                        for (Document x : documents) {
-                                            Log.d(TAG, (String) x.getField("level"));
-                                        }
+                                    Document[] documents = mMeteor.getDatabase().getCollection("Statuses").find();
+
+                                    for (Document x : documents) {
+                                        Log.d(TAG, (String) x.getField("level"));
+                                    }
 
                                 }
 
@@ -152,7 +156,7 @@ public class test extends AppCompatActivity implements MeteorCallback {
     @Override
     public void onDataAdded(String collectionName, String documentID, String newValuesJson) {
 
-            Log.d(TAG,"ON Data added>>>>>>>>"+newValuesJson+" ------------ "+collectionName);
+        Log.d(TAG,"ON Data added>>>>>>>>"+newValuesJson+" ------------ "+collectionName);
 
 
     }

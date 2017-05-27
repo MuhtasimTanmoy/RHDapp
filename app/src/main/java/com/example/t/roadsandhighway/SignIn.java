@@ -9,15 +9,24 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.JsonToken;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.t.roadsandhighway.Activity.NewsfeedOnMap;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.ObjectStreamClass;
+
 import im.delight.android.ddp.Meteor;
 import im.delight.android.ddp.MeteorCallback;
 import im.delight.android.ddp.ResultListener;
+import im.delight.android.ddp.db.Document;
 import im.delight.android.ddp.db.memory.InMemoryDatabase;
 
 public class SignIn extends AppCompatActivity implements MeteorCallback {
@@ -25,7 +34,7 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
     private EditText etUsername, etPassword;
     private Button btnSignIn;
     private Button btnSignUp;
-    private Meteor mMeteor;
+    public static Meteor mMeteor;
     private static String TAG = "signInPage";
     DbHelper dbHelper = new DbHelper(this);
 
@@ -52,7 +61,7 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
                         @Override
                         public void onSuccess(String result) {
                             Log.d(TAG, "Logged in: " + result);
-                            int row = dbHelper.numberOfRows();
+                            int row = dbHelper.numberOfRows("logIn");
                             // Toast.makeText(getApplicationContext(), "  "+row , Toast.LENGTH_SHORT).show();
                             if (row == 0) {
 
@@ -62,6 +71,24 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
                                 dbHelper.updateStatus(1, "true");
 
                             }
+
+
+//                            Document[] documents=mMeteor.getDatabase().getCollection("users").find();
+//                            for(Document d: documents){
+//                                Log.d(TAG,d.toString());
+//
+//
+//                                Document profile =(Document) d.getField("profile");
+//
+//                                Log.d(TAG,profile.toString());
+//
+//
+////                                    dbHelper.insertUserDetails(etUsername.getText().toString(),
+////                                            profile.getString("type"),profile.getString("contactNo"),
+////                                            profile.getString("address"), etPassword.getText().toString());
+//
+//
+//                            }
                             Intent intent = new Intent(getApplicationContext(), Home.class);
                             startActivity(intent);
 
@@ -95,7 +122,7 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
         // Gets the data repository in write mode
 
 
-        int row = dbHelper.numberOfRows();
+        int row = dbHelper.numberOfRows("logIn");
         // Toast.makeText(getApplicationContext(), "  "+row , Toast.LENGTH_SHORT).show();
         if (row == 1) {
             Cursor res = dbHelper.getLoginStatus(1);
@@ -148,7 +175,22 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
 
     @Override
     public void onDataAdded(String collectionName, String documentID, String newValuesJson) {
+        if(collectionName.equals("users")){
+            Log.d(TAG,newValuesJson.toString()+"  "+collectionName);
 
+            JSONObject jsonObject= null;
+            try {
+                jsonObject = new JSONObject(newValuesJson);
+                JSONObject profile=jsonObject.getJSONObject("profile");
+
+                dbHelper.insertUserDetails(jsonObject.getString("username"),
+                        profile.getString("type"),profile.getString("contactNo"),
+                        profile.getString("address"), etPassword.getText().toString());
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+           }
     }
 
     @Override
