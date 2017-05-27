@@ -1,6 +1,7 @@
 package com.example.t.roadsandhighway;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -18,6 +20,7 @@ public class ProfileFragment extends Fragment {
 
     private Button btnSignOut;
     private DbHelper dbHelper ;
+    private TextView tvName, tvType, tvAddresss,tvContactNo;
 
     @Nullable
     @Override
@@ -27,10 +30,14 @@ public class ProfileFragment extends Fragment {
         btnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(getActivity(), "wow", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "wow", Toast.LENGTH_SHORT).show();
                 dbHelper.updateStatus(1,"false");
+                dbHelper.deleteUserDetails(1);
+                SignIn.mMeteor.logout();
                 Intent intent = new Intent(getActivity(), SignIn.class);
                 startActivity(intent);
+
+
             }
         });
         return v;
@@ -42,5 +49,26 @@ public class ProfileFragment extends Fragment {
 
         btnSignOut=(Button) v.findViewById(R.id.btnProfileSignOut);
         dbHelper=new DbHelper(getActivity());
+        tvName=(TextView) v.findViewById(R.id.user_profile_name);
+        tvType=(TextView) v.findViewById(R.id.user_profile_short_bio);
+        tvAddresss=(TextView) v.findViewById(R.id.user_profile_address);
+        tvContactNo=(TextView) v.findViewById(R.id.user_profile_contactNO);
+
+
+        int row = dbHelper.numberOfRows("users");
+        // Toast.makeText(getApplicationContext(), "  "+row , Toast.LENGTH_SHORT).show();
+        if (row == 1) {
+            Cursor res = dbHelper.getUserDetails(1);
+            res.moveToFirst();
+            String name = res.getString(res.getColumnIndex("name"));
+            String type = res.getString(res.getColumnIndex("type"));
+            String contactNo = res.getString(res.getColumnIndex("contactNo"));
+            String address = res.getString(res.getColumnIndex("address"));
+
+            tvName.setText(name);
+            tvType.setText(type);
+            tvAddresss.setText(address);
+            tvContactNo.setText(contactNo);
+        }
     }
 }

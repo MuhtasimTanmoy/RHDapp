@@ -31,6 +31,11 @@ public class DbHelper extends SQLiteOpenHelper {
                 "CREATE TABLE IF NOT EXISTS logIn " +
                         "(id integer primary key, status text)"
         );
+        db.execSQL(
+                "CREATE TABLE IF NOT EXISTS users " +
+                        "(id integer primary key, name text, type text, contactNo,address text, password text )"
+        );
+
         Log.d(TAG,"table created");
 
     }
@@ -38,12 +43,15 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS logIn");
+        db.execSQL("DROP TABLE IF EXISTS users");
+
         onCreate(db);
     }
 
-    public int numberOfRows(){
+    public int numberOfRows(String dbTable){
         SQLiteDatabase db = this.getReadableDatabase();
-        int numRows = (int) DatabaseUtils.queryNumEntries(db, "logIn");
+//        int numRows = (int) DatabaseUtils.queryNumEntries(db, "logIn");
+        int numRows = (int) DatabaseUtils.queryNumEntries(db, dbTable);
         return numRows;
     }
 
@@ -62,6 +70,22 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return true;
     }
+//    name text, type text, contactNo,address text, password text
+    public boolean insertUserDetails(String name, String type, String contactNo,String address, String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("name", name);
+        contentValues.put("type",type);
+        contentValues.put("contactNo",contactNo);
+        contentValues.put("address",address);
+        contentValues.put("password",password);
+        db.insert("users", null, contentValues);
+
+        Log.d(TAG,"inserted  in users ");
+
+        return true;
+
+    }
 
     public Cursor getLoginStatus(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -70,9 +94,24 @@ public class DbHelper extends SQLiteOpenHelper {
         return res;
     }
 
+    public Cursor getUserDetails(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("select * from users where id=" + id + "", null);
+//            Cursor res =  db.rawQuery( "select * from logIn ", null );
+        return res;
+    }
+
     public Integer deleteContact(Integer id) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete("logIn",
+                "id = ? ",
+                new String[]{Integer.toString(id)});
+    }
+
+    public Integer deleteUserDetails(Integer id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Log.d(TAG,"deleted from  users ");
+        return db.delete("users",
                 "id = ? ",
                 new String[]{Integer.toString(id)});
     }

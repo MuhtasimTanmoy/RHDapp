@@ -19,14 +19,14 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
 
-        <activity android:name="MainActivity">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
 
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
         </activity>
         <activity android:name=".Activity.SmsActivity" />
         <activity android:name=".Activity.OcrActivity" />
@@ -38,16 +38,12 @@
             android:value="ocr" />
 
         <activity android:name=".SignIn" />
-        <activity android:name=".Activity.TripActivity" >
 
-        </activity>
+
+        <activity android:name=".Activity.TripActivity"></activity>
         <activity android:name=".StatusSend" />
-        <activity android:name=".Home" >
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>        --></activity>
+        <activity android:name=".Home">
+         </activity>
         <activity android:name=".SignUp" />
         <activity android:name=".Administer" />
 
@@ -64,21 +60,18 @@
             android:value="@string/apikey" />
 
         <activity android:name=".UserTypeActivity" />
-        <activity android:name=".Activity.NearByPlaces" />
-        <activity android:name=".Activity.ShowNearbyPlaces"></activity>
-
-        <activity android:name=".Activity.Autocomplete">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity android:name=".Activity.test">
         </activity>
 
+        <activity android:name=".Activity.NearByPlaces" />
+        <activity android:name=".Activity.ShowNearbyPlaces" />
+        <activity android:name=".Activity.Autocomplete">
+           </activity>
+        <activity android:name=".Activity.NewsfeedOnMap">
 
 
 
+        </activity>
     </application>
 
 </manifest>

@@ -46,7 +46,7 @@ public class test extends AppCompatActivity implements MeteorCallback {
 
 
         // create a new instance
-        mMeteor = new Meteor(this, "ws://192.168.1.106:3000/websocket",new InMemoryDatabase());
+        mMeteor = new Meteor(this, "ws://52.175.255.59/websocket",new InMemoryDatabase());
 
         // register the callback that will handle events and receive messages
         mMeteor.addCallback(this);
@@ -66,7 +66,7 @@ public class test extends AppCompatActivity implements MeteorCallback {
 
                 Log.d(TAG, String.valueOf(mMeteor.isConnected()));
                 if (mMeteor.isConnected()) {
-                    mMeteor.loginWithUsername("tanmoy", "tanmoy", new ResultListener() {
+                    mMeteor.loginWithUsername("bishwa", "1234", new ResultListener() {
                         @Override
                         public void onSuccess(String result) {
                             String[] params = {};
@@ -74,13 +74,13 @@ public class test extends AppCompatActivity implements MeteorCallback {
 
                                 @Override
                                 public void onSuccess() {
-                                   Log.d(TAG,"Yes");
+                                    Log.d(TAG,"Yes");
 
-                                        Document[] documents = mMeteor.getDatabase().getCollection("Statuses").find();
+                                    Document[] documents = mMeteor.getDatabase().getCollection("Statuses").find();
 
-                                        for (Document x : documents) {
-                                            Log.d(TAG, (String) x.getField("level"));
-                                        }
+                                    for (Document x : documents) {
+                                        Log.d(TAG, (String) x.getField("level"));
+                                    }
 
                                 }
 
@@ -151,7 +151,7 @@ public class test extends AppCompatActivity implements MeteorCallback {
     @Override
     public void onDataAdded(String collectionName, String documentID, String newValuesJson) {
 
-            Log.d(TAG,"ON Data added>>>>>>>>"+newValuesJson+" ------------ "+collectionName);
+        Log.d(TAG,"ON Data added>>>>>>>>"+newValuesJson+" ------------ "+collectionName);
 
 
     }
