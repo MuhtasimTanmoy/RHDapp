@@ -35,8 +35,8 @@ public class TripPathShow {
     List<LatLng> list;
 
     TripPathShow(Context context, String destination, String start) {
-        destination = destination;
-        start = start;
+        this.destination = destination;
+        this.start = start;
         URL = makeURL(start, destination);
         context = context;
         list = new ArrayList<LatLng>();
@@ -60,7 +60,7 @@ public class TripPathShow {
 
                 Log.d("check",response.toString());
 
-                onCallBack.onSuccess(response.toString());
+                //onCallBack.onSuccess(response.toString());
             }
         }, new Response.ErrorListener() {
 
@@ -78,14 +78,10 @@ public class TripPathShow {
 
     }
 
-    public interface CallBack {
-        void onSuccess(String str);
-
-        void onFail(String msg);
-    }
 
 
-    public List<LatLng> jsonReq(String URL) {
+
+    public void jsonReq(String URL,final CallBack callBack) {
 
 
         Log.d("PATH", "Entering");
@@ -99,11 +95,6 @@ public class TripPathShow {
             public void onResponse(JSONObject jsonObject) {
 
                 Log.d("PATH", "Success");
-
-
-                //Log.d("PATH", String.valueOf(jsonObject));
-
-
                 JSONArray routeArray = null;
                 try {
                     routeArray = jsonObject.getJSONArray("routes");
@@ -112,21 +103,11 @@ public class TripPathShow {
                     String encodedString = overviewPolylines.getString("points");
 //                    list.clear();
 //                    list.addAll( decodePoly(encodedString));
-                    List<LatLng> l = new ArrayList();
-                    l = decodePoly(encodedString);
+                    callBack.onSuccess(decodePoly(encodedString));
 
-                    for (LatLng li : l) {
-                        Log.d("check", li.toString());
-
-                    }
-
-
-                    // startActivity(intent);
-//                    for(LatLng l : list){
-//                        Log.d("PATH", l.latitude +"-----"+l.longitude);
-//                    }
 
                 } catch (JSONException e) {
+                    callBack.onFail(e.toString());
                     e.printStackTrace();
                 }
 
@@ -141,10 +122,7 @@ public class TripPathShow {
         });
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(jsonObjectRequest);
-        if (list != null) {
-            Log.d("check", "YO" + list.toString());
-        }
-        return list;
+
     }
 
 
@@ -209,5 +187,14 @@ public class TripPathShow {
         urlString.append("&sensor=false&mode=driving&alternatives=true");
         urlString.append("&key=AIzaSyAuDPbEB8OfpLi2aXcPa4KnTQyiuQurZ_Y");
         return urlString.toString();
+    }
+
+
+
+
+    public interface CallBack {
+        void onSuccess(List<LatLng> list);
+
+        void onFail(String msg);
     }
 }
