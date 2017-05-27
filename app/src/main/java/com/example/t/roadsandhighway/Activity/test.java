@@ -66,6 +66,8 @@ public class test extends AppCompatActivity implements MeteorCallback {
 
                 Log.d(TAG, String.valueOf(mMeteor.isConnected()));
                 if (mMeteor.isConnected()) {
+
+
                     mMeteor.loginWithUsername("bishwa", "1234", new ResultListener() {
                         @Override
                         public void onSuccess(String result) {

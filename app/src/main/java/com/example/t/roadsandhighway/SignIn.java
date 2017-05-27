@@ -89,7 +89,9 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
 //
 //
 //                            }
-                            Intent intent = new Intent(getApplicationContext(), Home.class);
+//                            Intent intent = new Intent(getApplicationContext(), Home.class);
+                            Intent intent = new Intent(getApplicationContext(), NewsfeedOnMap.class);
+
                             startActivity(intent);
 
                         }
@@ -110,7 +112,9 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SignUp.class);
+                Intent intent = new Intent(getApplicationContext(), NewsfeedOnMap.class);
+//                Intent intent = new Intent(getApplicationContext(), SignUp.class);
+
                 startActivity(intent);
             }
         });
