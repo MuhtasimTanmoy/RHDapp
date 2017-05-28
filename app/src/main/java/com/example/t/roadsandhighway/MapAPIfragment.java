@@ -2,6 +2,7 @@ package com.example.t.roadsandhighway;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -26,7 +27,14 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.t.roadsandhighway.Activity.AppController;
 import com.example.t.roadsandhighway.Activity.ShowNearbyPlaces;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,6 +43,12 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
+import im.delight.android.ddp.Meteor;
+import im.delight.android.ddp.MeteorCallback;
+import im.delight.android.ddp.SubscribeListener;
+import im.delight.android.ddp.db.memory.InMemoryDatabase;
 
 import static com.example.t.roadsandhighway.R.color.*;
 
@@ -42,7 +56,9 @@ import static com.example.t.roadsandhighway.R.color.*;
  * Created by t on 5/24/17.
  */
 
-public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickListener {
+public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickListener, MeteorCallback, OnMapReadyCallback {
+
+    private Meteor mMeteor;
 
     AutoCompleteTextView autoCompViewD;
     AutoCompleteTextView autoCompViewS;
@@ -57,8 +73,16 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
     TripPathShow tripPathShow;
     GeoCode geoCode;
 
-    List<LatLng> list;
+
     ArrayList<String> arrayList;
+
+    SupportMapFragment supportMapFragment;
+
+    ArrayList<StatusObject> statusList = new ArrayList<>();
+
+    List<LatLng> pathList = new ArrayList<>();
+
+
 
 
     public String getDesLatLng() {
@@ -84,13 +108,26 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
         autoCompViewS.setOnItemClickListener(this);
 
         getRoute = (Button) v.findViewById(R.id.getRoute);
-        list = new ArrayList<LatLng>();
+
         arrayList = new ArrayList<>();
 
-        gpsEnable= (ImageButton) v.findViewById(R.id.getFromGps);
+        gpsEnable = (ImageButton) v.findViewById(R.id.getFromGps);
 
-        geoCode=new GeoCode(getContext());
+        geoCode = new GeoCode(getContext());
 
+
+        //supportMapFragment = (SupportMapFragment) getFragmentManager().findFragmentById(R.id.mapfragment);
+        supportMapFragment = (SupportMapFragment) this.getChildFragmentManager()
+                .findFragmentById(R.id.mapfragment);
+
+        // create a new instance
+        mMeteor = new Meteor(getContext(), "ws://52.175.255.59/websocket", new InMemoryDatabase());
+
+        // register the callback that will handle events and receive messages
+        mMeteor.addCallback(this);
+
+        // establish the connection
+        mMeteor.connect();
 
 
         gpsEnable.setOnClickListener(new View.OnClickListener() {
@@ -99,8 +136,8 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
                 SingleShotLocationProvider.requestSingleUpdate(getContext(), new SingleShotLocationProvider.LocationCallback() {
                     @Override
                     public void onNewLocationAvailable(SingleShotLocationProvider.GPSCoordinates location) {
-                        Log.d("Location",location.toString());
-                        srcLatLng=String.valueOf(location.getLat()) + "," + String.valueOf(location.getLang());
+                        Log.d("Location", location.toString());
+                        srcLatLng = String.valueOf(location.getLat()) + "," + String.valueOf(location.getLang());
                         autoCompViewS.setText("Your location");
                         gpsEnable.setBackgroundColor(R.color.telenorBlue);
 
@@ -115,9 +152,10 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
             @Override
             public void onClick(View v) {
 
-                //Toast.makeText(getContext(),autoCompViewD.getText().toString()+autoCompViewS.getText().toString(),Toast.LENGTH_SHORT).show();
-                Log.d("check", getDesLatLng()+getSrcLatLng());
 
+
+                //Toast.makeText(getContext(),autoCompViewD.getText().toString()+autoCompViewS.getText().toString(),Toast.LENGTH_SHORT).show();
+                Log.d("check", getDesLatLng() + getSrcLatLng());
 
 
                 tripPathShow = new TripPathShow(getContext(), getDesLatLng(), getSrcLatLng());
@@ -127,9 +165,13 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
                 tripPathShow.jsonReq(tripPathShow.getURL(), new TripPathShow.CallBack() {
                     @Override
                     public void onSuccess(List<LatLng> list) {
-                        Intent intent= new Intent(getContext(), ShowNearbyPlaces.class);
-                        intent.putExtra("locList", (Serializable) list);
-                        startActivity(intent);
+//                        Intent intent = new Intent(getContext(), ShowNearbyPlaces.class);
+//                        intent.putExtra("locList", (Serializable) list);
+//                        startActivity(intent);
+                        pathList=list;
+                        supportMapFragment.getMapAsync(MapAPIfragment.this);
+
+                        fetchData();
                     }
 
                     @Override
@@ -140,7 +182,6 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
 
             }
         });
-
 
 
         return v;
@@ -217,13 +258,12 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
 
         geoCode.jsonReq(geoCode.getURL(), new GeoCode.CallBack() {
             @Override
-            public void onSuccess(Double lat,Double lng) {
-                Log.d("success",String.valueOf(lat)+"++++++-------+++++"+String.valueOf(lng));
-                if(desLatLng==null) {
+            public void onSuccess(Double lat, Double lng) {
+                Log.d("success", String.valueOf(lat) + "++++++-------+++++" + String.valueOf(lng));
+                if (desLatLng == null) {
                     desLatLng = String.valueOf(lat) + "," + String.valueOf(lng);
-                }
-                else{
-                    srcLatLng=String.valueOf(lat) + "," + String.valueOf(lng);
+                } else {
+                    srcLatLng = String.valueOf(lat) + "," + String.valueOf(lng);
                 }
             }
 
@@ -233,6 +273,89 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
             }
         });
         Toast.makeText(getContext(), str, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+        for (StatusObject statusObject : statusList) {
+            Random r = new Random();
+            double latRand = r.nextDouble();
+            double lngRand = r.nextDouble();
+            LatLng latLng = new LatLng(statusObject.lat, statusObject.lng);
+            googleMap.addMarker(new MarkerOptions().position(latLng)
+                    .title(statusObject.level + " " + statusObject.trafficVolume + " "
+                            + statusObject.averageSpeed));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        }
+
+
+        Polyline line = googleMap.addPolyline(new PolylineOptions()
+                .addAll(pathList)
+                .width(12)
+                .color(Color.parseColor("#05b1fb"))//Google maps blue color
+                .geodesic(true)
+        );
+
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(23.727358, 90.389717),15), 2000, null);
+        //googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(23.727358, 90.389717), 10), 2000, null);
+
+
+    }
+
+    @Override
+    public void onConnect(boolean signedInAutomatically) {
+
+    }
+
+    @Override
+    public void onDisconnect() {
+
+    }
+
+    @Override
+    public void onException(Exception e) {
+
+    }
+
+    @Override
+    public void onDataAdded(String collectionName, String documentID, String newValuesJson) {
+
+        if (collectionName.equals("Statuses")) {
+            try {
+                JSONObject jsonObject = new JSONObject(newValuesJson);
+                String address = jsonObject.getString("address");
+                double lat = jsonObject.getDouble("latitude");
+                double lng = jsonObject.getDouble("longitude");
+                String level = jsonObject.getString("level");
+                String averageSpeed = jsonObject.getString("averageSpeed");
+                String trafficVolume = jsonObject.getString("trafficVolume");
+                String note = jsonObject.getString("note");
+                String createdAt = jsonObject.getString("createdAt");
+                String contactNo = jsonObject.getString("contactNo");
+                if (!String.valueOf(lat).equals(null) && !String.valueOf(lng).equals(null)) {
+                    statusList.add(new StatusObject(address, lat, lng, level, averageSpeed, trafficVolume
+                            , note, createdAt, contactNo));
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            supportMapFragment.getMapAsync(this);
+
+        }
+
+
+    }
+
+    @Override
+    public void onDataChanged(String collectionName, String documentID, String updatedValuesJson, String removedValuesJson) {
+
+    }
+
+    @Override
+    public void onDataRemoved(String collectionName, String documentID) {
+
     }
 
 
@@ -283,12 +406,37 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
         }
     }
 
+    private void fetchData() {
+        Log.d(TAG, "connection " + String.valueOf(mMeteor.isConnected()));
+        if (mMeteor.isConnected()) {
+            final String[] params = {};
+
+            String subscriptionId = mMeteor.subscribe("statuses", params, new SubscribeListener() {
+
+                @Override
+                public void onSuccess() {
+                    Log.d(TAG, params.toString());
+
+
+                }
+
+                @Override
+                public void onError(String error, String reason, String details) {
+                    Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+        }
+
+
+    }
+
     @Override
     public void onResume() {
         super.onResume();
-        Toast.makeText(getContext(),"resumed",Toast.LENGTH_SHORT).show();
-        desLatLng=null;
-        srcLatLng=null;
+        Toast.makeText(getContext(), "resumed", Toast.LENGTH_SHORT).show();
+        desLatLng = null;
+        srcLatLng = null;
 
     }
 }

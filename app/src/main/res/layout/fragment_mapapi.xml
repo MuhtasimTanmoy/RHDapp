@@ -1,79 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_marginTop="30dp"
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mapfragment"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <AutoCompleteTextView
-        android:layout_below="@+id/seeLatLang"
-        android:id="@+id/autoCompleteTextViewD"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:completionThreshold="1"
-        android:hint="Destination" >
-
-        <requestFocus />
-    </AutoCompleteTextView>
-
-    </android.support.design.widget.TextInputLayout>
+        android:layout_height="match_parent"
+        tools:context="com.example.mapwithmarker.MapsMarkerActivity" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-    <android.support.design.widget.TextInputLayout
-        android:layout_marginTop="30dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        >
-    <AutoCompleteTextView
-        android:layout_below="@+id/seeLatLang"
-        android:id="@+id/autoCompleteTextViewS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:completionThreshold="1"
-        android:hint="Start from" >
+        android:orientation="vertical"
+        android:background="#96797878"
+        tools:mockup_opacity="1">
 
-        <requestFocus />
-    </AutoCompleteTextView>
-
-    </android.support.design.widget.TextInputLayout>
-
-
-        <ImageButton
-            android:id="@+id/getFromGps"
-            android:layout_width="wrap_content"
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/ic_gps"
+            android:layout_gravity="top"
+            android:layout_marginTop="15dp"
 
-            />
+            >
+
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteTextViewD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/seeLatLang"
+                android:completionThreshold="1"
+                android:textColor="@color/white"
+                android:ems="10"
+                android:textSize="12dp"
+                android:hint="Destination">
+
+                <requestFocus />
+            </AutoCompleteTextView>
+
+        </android.support.design.widget.TextInputLayout>
 
 
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteTextViewS"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/seeLatLang"
+                android:completionThreshold="1"
+                android:textColor="@color/white"
+
+                android:ems="10"
+                android:textSize="12dp"
+                android:hint="Start from">
+
+                <requestFocus />
+            </AutoCompleteTextView>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/getRoute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="12dp"
+                android:background="@drawable/bluebutton"
+                android:text="Get Route"
+                android:textColor="@color/white"
+                android:layout_weight="4"/>
+
+            <ImageButton
+                android:id="@+id/getFromGps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_gps"
+                android:layout_weight="1"
+
+                />
+        </LinearLayout>
 
     </LinearLayout>
 
 
-    <Button
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="15dp"
-        android:layout_gravity="center"
-        android:text="Get Route"
-        android:textColor="@color/white"
-        android:background="@drawable/bluebutton"
-        android:id="@+id/getRoute" />
-
-
-
-
-
-
-</LinearLayout>
+</FrameLayout>

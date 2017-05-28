@@ -17,22 +17,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import im.delight.android.ddp.Meteor;
 import im.delight.android.ddp.MeteorCallback;
-import im.delight.android.ddp.ResultListener;
 import im.delight.android.ddp.SubscribeListener;
-import im.delight.android.ddp.db.Document;
 import im.delight.android.ddp.db.memory.InMemoryDatabase;
 
-import static android.R.attr.button;
-import static android.R.attr.stateListAnimator;
-import static android.R.attr.statusBarColor;
 
 /**
  * Created by t on 5/15/17.
@@ -48,6 +40,8 @@ public class NewsfeedOnMap extends AppCompatActivity implements MeteorCallback, 
 
 
     ArrayList<StatusObject> list = new ArrayList<>();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,15 +160,15 @@ public class NewsfeedOnMap extends AppCompatActivity implements MeteorCallback, 
     public void onMapReady(GoogleMap googleMap) {
 
 
-        for (StatusObject statusObject : list) {
-            Random r = new Random();
-            double latRand = r.nextDouble();
-            double lngRand = r.nextDouble();
-            LatLng latLng = new LatLng(statusObject.lat, statusObject.lng);
-            googleMap.addMarker(new MarkerOptions().position(latLng)
-                    .title(statusObject.level + " " + statusObject.trafficVolume + " "
-                            + statusObject.averageSpeed));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+            for (StatusObject statusObject : list) {
+                Random r = new Random();
+                double latRand = r.nextDouble();
+                double lngRand = r.nextDouble();
+                LatLng latLng = new LatLng(statusObject.lat, statusObject.lng);
+                googleMap.addMarker(new MarkerOptions().position(latLng)
+                        .title(statusObject.level + " " + statusObject.trafficVolume + " "
+                                + statusObject.averageSpeed));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
 
         }
 
