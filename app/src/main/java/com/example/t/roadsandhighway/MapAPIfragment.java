@@ -30,6 +30,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.t.roadsandhighway.Activity.AppController;
+import com.example.t.roadsandhighway.Activity.NearByPlaces;
 import com.example.t.roadsandhighway.Activity.ShowNearbyPlaces;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -73,6 +74,8 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
 
     TextView open;
 
+    Button near;
+
     // ImageButton gpsEnable;
 
     Button getRoute;
@@ -110,7 +113,7 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
         holder= (LinearLayout) v.findViewById(R.id.holder);
         openHolder= (LinearLayout) v.findViewById(R.id.openHolder);
         open= (TextView) v.findViewById(R.id.open);
-
+        near= (Button) v.findViewById(R.id.getNear);
         autoCompViewD.setAdapter(new GooglePlacesAutocompleteAdapter(getContext(), R.layout.list_item));
         autoCompViewD.setOnItemClickListener(this);
         autoCompViewS = (AutoCompleteTextView) v.findViewById(R.id.autoCompleteTextViewS);
@@ -157,6 +160,15 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
 //                });
 //            }
 //        });
+
+
+        near.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getContext(), NearByPlaces.class);
+                startActivity(intent);
+            }
+        });
 
         close.setOnTouchListener(new View.OnTouchListener() {
             @Override

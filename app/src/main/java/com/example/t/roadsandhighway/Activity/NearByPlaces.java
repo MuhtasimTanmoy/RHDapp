@@ -45,7 +45,7 @@ public class NearByPlaces extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_near_by_places);
+        //setContentView(R.layout.activity_near_by_places);
 
 
         etRadius=(EditText) findViewById(R.id.etFindRadius) ;
@@ -57,22 +57,24 @@ public class NearByPlaces extends AppCompatActivity {
         pDialog = new ProgressDialog(this);
         pDialog.setMessage("Please wait...");
         pDialog.setCancelable(false);
+        foo(getApplicationContext());
+       // makeJsonObjectRequest();
 
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
+//        btnSubmit.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                // making json object request
+//
+//            }
+//        });
 
-            @Override
-            public void onClick(View v) {
-                // making json object request
-                makeJsonObjectRequest();
-            }
-        });
-
-        lat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                foo(getApplicationContext());
-            }
-        });
+//        lat.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                foo(getApplicationContext());
+//            }
+//        });
 
 
 
@@ -91,24 +93,26 @@ public class NearByPlaces extends AppCompatActivity {
                 new SingleShotLocationProvider.LocationCallback() {
                     @Override public void onNewLocationAvailable(SingleShotLocationProvider.GPSCoordinates location) {
                         Log.d("Location", "my location is done" + location.getLang()+location.getLang());
+                        makeJsonObjectRequest(String.valueOf(location.getLat())+","+String.valueOf(location.getLang()));
+
+
+
                     }
                 });
     }
 
     ArrayList<LatLng> latLngs= new ArrayList<>();
 
-    private void makeJsonObjectRequest() {
+    private void makeJsonObjectRequest(String latlng) {
 
-        String urlJsonObj = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?" +
-                "location=23.726574,90.389868&radius="+etRadius.getText().toString()+
-                "&type=restaurant&keyword=cruise&key="
+        String urlJsonObj = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+latlng+"&radius=1000&type=restaurant&key="
                 +"AIzaSyAuDPbEB8OfpLi2aXcPa4KnTQyiuQurZ_Y";
 
+        Log.d("Location", "my location is done" + urlJsonObj);
 
         showpDialog();
 
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Method.GET,
-                urlJsonObj, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Method.GET,urlJsonObj, null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
@@ -117,6 +121,8 @@ public class NearByPlaces extends AppCompatActivity {
                 try {
                     jsonResponse = "";
                     JSONArray results=response.getJSONArray("results");
+                    Log.d(TAG, "Json Data Found");
+
                     for (int i = 0; i < results.length(); i++) {
 
                         JSONObject place = (JSONObject) results
@@ -136,7 +142,6 @@ public class NearByPlaces extends AppCompatActivity {
                         latLngs.add(new LatLng(Double.parseDouble(lat), Double.parseDouble(lng)));
                     }
 
-                    txtResponse.setText(jsonResponse);
 
                     Intent intent= new Intent(getApplicationContext(), ShowNearbyPlaces.class);
                     intent.putExtra("locList", latLngs);

@@ -43,23 +43,28 @@ public class    ShowNearbyPlaces extends AppCompatActivity implements OnMapReady
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        boolean b=true;
         // Add a marker in Sydney, Australia,
         // and move the map's camera to the same location.
         for (LatLng latLng : latLngs) {
             googleMap.addMarker(new MarkerOptions().position(latLng)
                     .title("found"));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+           // googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+            if(b==true){
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15), 2000, null);
+            b=false;}
+
 
         }
 
-        Polyline line = googleMap.addPolyline(new PolylineOptions()
-                .addAll(latLngs)
-                .width(12)
-                .color(Color.parseColor("#05b1fb"))//Google maps blue color
-                .geodesic(true)
-        );
-
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(23.727358, 90.389717),15), 2000, null);
+//        Polyline line = googleMap.addPolyline(new PolylineOptions()
+//                .addAll(latLngs)
+//                .width(12)
+//                .color(Color.parseColor("#05b1fb"))//Google maps blue color
+//                .geodesic(true)
+//        );
+//
+//        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(23.727358, 90.389717),15), 2000, null);
 
 
         /*
