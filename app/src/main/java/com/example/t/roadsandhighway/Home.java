@@ -50,14 +50,17 @@ public class Home extends AppCompatActivity {
             @Override
             public void onTabSelected(@IdRes int tabId) {
                 if(tabId==R.id.tab_maps){
+                    fab.setVisibility(View.INVISIBLE);
                     fragment=new MapAPIfragment();
                 }
                 else if(tabId==R.id.tab_info){
+                    fab.setVisibility(View.INVISIBLE);
                     fragment=new ProfileFragment();
 //                    fragment= new StatusSend();
 
                 }
                 else if (tabId==R.id.tab_send){
+                    fab.setVisibility(View.VISIBLE);
                     fragment=new StatusSendFragment();
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.contentContainer,fragment).commit();

@@ -2,7 +2,6 @@ package com.example.t.roadsandhighway;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -62,7 +61,7 @@ public class StatusSendFragment extends Fragment implements AdapterView.OnItemSe
                     values.put("longitude", 90);
                     values.put("address", "BUET");
                     Object[] queryParams = {values};
-                    comWithServer.callFucntion("statuses.insert", queryParams);
+                    comWithServer.callFucntion("statuses.insertWithLatLong", queryParams);
 
                 }
             }

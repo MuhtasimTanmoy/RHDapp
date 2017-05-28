@@ -5,6 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
+
+
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/mapfragment"
@@ -14,20 +16,28 @@
         tools:context="com.example.mapwithmarker.MapsMarkerActivity" />
 
     <LinearLayout
+        android:id="@+id/holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="#96797878"
-        tools:mockup_opacity="1">
+        tools:mockup_opacity="1"
+        android:layout_gravity="bottom"
+        >
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:layout_marginTop="15dp"
 
-            >
+            <!--<ImageButton-->
+                <!--tools:mockup_opacity=".5"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:src="@drawable/down"/>-->
 
+
+            <TextView
+                android:id="@+id/close"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:drawableTop="@drawable/down"/>
             <AutoCompleteTextView
                 android:id="@+id/autoCompleteTextViewD"
                 android:layout_width="match_parent"
@@ -35,19 +45,16 @@
                 android:layout_below="@+id/seeLatLang"
                 android:completionThreshold="1"
                 android:textColor="@color/white"
+                android:textColorHint="@color/white"
                 android:ems="10"
-                android:textSize="12dp"
                 android:hint="Destination">
 
                 <requestFocus />
             </AutoCompleteTextView>
 
-        </android.support.design.widget.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+
 
             <AutoCompleteTextView
                 android:id="@+id/autoCompleteTextViewS"
@@ -56,15 +63,14 @@
                 android:layout_below="@+id/seeLatLang"
                 android:completionThreshold="1"
                 android:textColor="@color/white"
-
+                android:textColorHint="@color/white"
+                android:drawableRight="@drawable/ic_gps"
                 android:ems="10"
-                android:textSize="12dp"
                 android:hint="Start from">
 
                 <requestFocus />
             </AutoCompleteTextView>
 
-        </android.support.design.widget.TextInputLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -73,25 +79,40 @@
             <Button
                 android:id="@+id/getRoute"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="32dp"
                 android:layout_gravity="center"
                 android:textSize="12dp"
-                android:background="@drawable/bluebutton"
-                android:text="Get Route"
-                android:textColor="@color/white"
+                tools:mockup_opacity="0.5"
+                android:text="Let's go"
+                android:shadowRadius="4"
+                android:background="@drawable/whitebutton"
+                android:textColor="@color/telenorBlue"
                 android:layout_weight="4"/>
 
-            <ImageButton
-                android:id="@+id/getFromGps"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_gps"
-                android:layout_weight="1"
-
-                />
         </LinearLayout>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/openHolder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:visibility="invisible"
+        android:background="#96797878"
+        >
+
+        <TextView
+
+            android:id="@+id/open"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:drawableTop="@drawable/up"
+            />
+
+    </LinearLayout>
+
+
 
 
 </FrameLayout>

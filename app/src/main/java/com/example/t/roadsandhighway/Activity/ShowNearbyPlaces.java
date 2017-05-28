@@ -47,7 +47,7 @@ public class    ShowNearbyPlaces extends AppCompatActivity implements OnMapReady
         // and move the map's camera to the same location.
         for (LatLng latLng : latLngs) {
             googleMap.addMarker(new MarkerOptions().position(latLng)
-                    .title("Marker in Sydney"));
+                    .title("found"));
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
 
         }

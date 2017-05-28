@@ -8,8 +8,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -18,6 +20,8 @@ import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -50,7 +54,6 @@ import im.delight.android.ddp.MeteorCallback;
 import im.delight.android.ddp.SubscribeListener;
 import im.delight.android.ddp.db.memory.InMemoryDatabase;
 
-import static com.example.t.roadsandhighway.R.color.*;
 
 /**
  * Created by t on 5/24/17.
@@ -65,14 +68,19 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
     String desLatLng;
     String srcLatLng;
 
-    ImageButton gpsEnable;
+    LinearLayout holder;
+    LinearLayout openHolder;
+
+    TextView open;
+
+    // ImageButton gpsEnable;
 
     Button getRoute;
     private static String TAG = "auto";
 
     TripPathShow tripPathShow;
     GeoCode geoCode;
-
+    TextView close;
 
     ArrayList<String> arrayList;
 
@@ -81,8 +89,6 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
     ArrayList<StatusObject> statusList = new ArrayList<>();
 
     List<LatLng> pathList = new ArrayList<>();
-
-
 
 
     public String getDesLatLng() {
@@ -98,12 +104,17 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_mapapi, container,
                 false);
+
+
         autoCompViewD = (AutoCompleteTextView) v.findViewById(R.id.autoCompleteTextViewD);
+        holder= (LinearLayout) v.findViewById(R.id.holder);
+        openHolder= (LinearLayout) v.findViewById(R.id.openHolder);
+        open= (TextView) v.findViewById(R.id.open);
 
         autoCompViewD.setAdapter(new GooglePlacesAutocompleteAdapter(getContext(), R.layout.list_item));
         autoCompViewD.setOnItemClickListener(this);
         autoCompViewS = (AutoCompleteTextView) v.findViewById(R.id.autoCompleteTextViewS);
-
+        close= (TextView) v.findViewById(R.id.close);
         autoCompViewS.setAdapter(new GooglePlacesAutocompleteAdapter(getContext(), R.layout.list_item));
         autoCompViewS.setOnItemClickListener(this);
 
@@ -111,7 +122,7 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
 
         arrayList = new ArrayList<>();
 
-        gpsEnable = (ImageButton) v.findViewById(R.id.getFromGps);
+//        gpsEnable = (ImageButton) v.findViewById(R.id.getFromGps);
 
         geoCode = new GeoCode(getContext());
 
@@ -130,20 +141,71 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
         mMeteor.connect();
 
 
-        gpsEnable.setOnClickListener(new View.OnClickListener() {
+//        gpsEnable.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                SingleShotLocationProvider.requestSingleUpdate(getContext(), new SingleShotLocationProvider.LocationCallback() {
+//                    @Override
+//                    public void onNewLocationAvailable(SingleShotLocationProvider.GPSCoordinates location) {
+//                        Log.d("Location", location.toString());
+//                        srcLatLng = String.valueOf(location.getLat()) + "," + String.valueOf(location.getLang());
+//                        autoCompViewS.setText("Your location");
+//                        gpsEnable.setBackgroundColor(R.color.telenorBlue);
+//
+//
+//                    }
+//                });
+//            }
+//        });
+
+        close.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                SingleShotLocationProvider.requestSingleUpdate(getContext(), new SingleShotLocationProvider.LocationCallback() {
-                    @Override
-                    public void onNewLocationAvailable(SingleShotLocationProvider.GPSCoordinates location) {
-                        Log.d("Location", location.toString());
-                        srcLatLng = String.valueOf(location.getLat()) + "," + String.valueOf(location.getLang());
-                        autoCompViewS.setText("Your location");
-                        gpsEnable.setBackgroundColor(R.color.telenorBlue);
+            public boolean onTouch(View v, MotionEvent event) {
+
+                holder.setVisibility(View.INVISIBLE);
+                openHolder.setVisibility(View.VISIBLE);
 
 
+
+
+                return true;
+            }
+        });
+
+        open.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                holder.setVisibility(View.VISIBLE);
+                openHolder.setVisibility(View.INVISIBLE);
+                return true;
+            }
+        });
+
+        autoCompViewS.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int DRAWABLE_LEFT = 0;
+                final int DRAWABLE_TOP = 1;
+                final int DRAWABLE_RIGHT = 2;
+                final int DRAWABLE_BOTTOM = 3;
+
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (autoCompViewS.getRight() - autoCompViewS.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        SingleShotLocationProvider.requestSingleUpdate(getContext(), new SingleShotLocationProvider.LocationCallback() {
+                            @Override
+                            public void onNewLocationAvailable(SingleShotLocationProvider.GPSCoordinates location) {
+                                Log.d("Location", location.toString());
+                                srcLatLng = String.valueOf(location.getLat()) + "," + String.valueOf(location.getLang());
+                                autoCompViewS.setText("Your location");
+
+
+                            }
+                        });
+
+                        return true;
                     }
-                });
+                }
+                return false;
             }
         });
 
@@ -151,6 +213,7 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
         getRoute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
 
 
@@ -168,7 +231,7 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
 //                        Intent intent = new Intent(getContext(), ShowNearbyPlaces.class);
 //                        intent.putExtra("locList", (Serializable) list);
 //                        startActivity(intent);
-                        pathList=list;
+                        pathList = list;
                         supportMapFragment.getMapAsync(MapAPIfragment.this);
 
                         fetchData();
@@ -182,7 +245,7 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
 
             }
         });
-
+        supportMapFragment.getMapAsync(this);
 
         return v;
     }
@@ -278,29 +341,32 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
-        for (StatusObject statusObject : statusList) {
-            Random r = new Random();
-            double latRand = r.nextDouble();
-            double lngRand = r.nextDouble();
-            LatLng latLng = new LatLng(statusObject.lat, statusObject.lng);
-            googleMap.addMarker(new MarkerOptions().position(latLng)
-                    .title(statusObject.level + " " + statusObject.trafficVolume + " "
-                            + statusObject.averageSpeed));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        if (statusList.size() > 0) {
+
+            for (StatusObject statusObject : statusList) {
+                LatLng latLng = new LatLng(statusObject.lat, statusObject.lng);
+                googleMap.addMarker(new MarkerOptions().position(latLng)
+                        .title(statusObject.level + " "));
+//            + statusObject.trafficVolume + " "
+//                    + statusObject.averageSpeed
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+            }
         }
 
-
-        Polyline line = googleMap.addPolyline(new PolylineOptions()
-                .addAll(pathList)
-                .width(12)
-                .color(Color.parseColor("#05b1fb"))//Google maps blue color
-                .geodesic(true)
-        );
-
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(23.727358, 90.389717),15), 2000, null);
-        //googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(23.727358, 90.389717), 10), 2000, null);
+        if (pathList.size() > 0) {
 
 
+            Polyline line = googleMap.addPolyline(new PolylineOptions()
+                    .addAll(pathList)
+                    .width(12)
+                    .color(Color.parseColor("#05b1fb"))//Google maps blue color
+                    .geodesic(true)
+            );
+
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(23.727358, 90.389717), 15), 2000, null);
+            //googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(23.727358, 90.389717), 10), 2000, null);
+
+        }
     }
 
     @Override
