@@ -58,7 +58,6 @@ public class ProfileFragment extends Fragment {
 
         int row = dbHelper.numberOfRows("users");
         // Toast.makeText(getApplicationContext(), "  "+row , Toast.LENGTH_SHORT).show();
-        Log.d("profile",row+" ");
         if (row == 1) {
             Cursor res = dbHelper.getUserDetails(1);
             res.moveToFirst();
@@ -67,10 +66,10 @@ public class ProfileFragment extends Fragment {
             String contactNo = res.getString(res.getColumnIndex("contactNo"));
             String address = res.getString(res.getColumnIndex("address"));
 
-            tvName.setText(name);
-            tvType.setText(type);
-            tvAddresss.setText(address);
-            tvContactNo.setText(contactNo);
+            tvName.setText("Name: "+name);
+            tvType.setText("Type: "+type);
+            tvAddresss.setText("Address: "+address);
+            tvContactNo.setText("Contact No: "+contactNo);
         }
     }
 }

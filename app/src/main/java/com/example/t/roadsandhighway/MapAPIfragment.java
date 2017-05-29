@@ -352,7 +352,7 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
 
             }
         });
-        Toast.makeText(getContext(), str, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), str, Toast.LENGTH_SHORT).show();
     }
 
     @Override
