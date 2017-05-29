@@ -1,5 +1,6 @@
 package com.example.t.roadsandhighway;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -88,11 +89,15 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
 
     ArrayList<String> arrayList;
 
+    ProgressDialog progressDialog;
+
     SupportMapFragment supportMapFragment;
 
     ArrayList<StatusObject> statusList = new ArrayList<>();
 
     List<LatLng> pathList = new ArrayList<>();
+
+
 
 
     public String getDesLatLng() {
@@ -125,6 +130,10 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
         getRoute = (Button) v.findViewById(R.id.getRoute);
 
         arrayList = new ArrayList<>();
+
+        progressDialog=new ProgressDialog(getContext());
+        progressDialog.setMessage("Route loading with recent jam as red marker");
+        progressDialog.setCancelable(true);
 
 //        gpsEnable = (ImageButton) v.findViewById(R.id.getFromGps);
 
@@ -234,6 +243,14 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
             public void onClick(View v) {
 
 
+
+
+                hideKeyboard();
+                showpDialog();
+
+                holder.setVisibility(View.INVISIBLE);
+                openHolder.setVisibility(View.VISIBLE);
+
                 //Toast.makeText(getContext(),autoCompViewD.getText().toString()+autoCompViewS.getText().toString(),Toast.LENGTH_SHORT).show();
                 Log.d("check", getDesLatLng() + getSrcLatLng());
 
@@ -267,6 +284,14 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
         return v;
     }
 
+
+    void hideKeyboard(){
+        View view = getActivity().getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
 
     private ArrayList makeJsonObjectRequest(String input) {
 
@@ -358,6 +383,8 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
+
+
         if (statusList.size() > 0) {
 
             for (StatusObject statusObject : statusList) {
@@ -366,7 +393,7 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
                         .title(statusObject.level + " "));
 //            + statusObject.trafficVolume + " "
 //                    + statusObject.averageSpeed
-                googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                //googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
             }
         }
 
@@ -381,6 +408,20 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
             );
 
             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(23.727358, 90.389717), 15), 2000, null);
+
+            Thread timerThread = new Thread() {
+                public void run() {
+                    try {
+                        sleep(1200);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } finally {
+                        hidepDialog();
+                    }
+                }
+            };
+            timerThread.start();
+
             //googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(23.727358, 90.389717), 10), 2000, null);
 
         }
@@ -512,6 +553,16 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
         }
 
 
+    }
+
+    private void showpDialog() {
+        if (!progressDialog.isShowing())
+           progressDialog.show();
+    }
+
+    private void hidepDialog() {
+        if (progressDialog.isShowing())
+            progressDialog.dismiss();
     }
 
     @Override

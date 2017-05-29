@@ -1,5 +1,6 @@
 package com.example.t.roadsandhighway;
 
+import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -55,6 +57,7 @@ public class StatusSendFragment extends Fragment implements AdapterView.OnItemSe
 
 
         init();
+
 
         etMyLocation.setOnTouchListener(new View.OnTouchListener() {
 
@@ -113,6 +116,8 @@ public class StatusSendFragment extends Fragment implements AdapterView.OnItemSe
         });
         return v;
     }
+
+
 
 
     public void onItemClick(AdapterView adapterView, View view, int position, long id) {

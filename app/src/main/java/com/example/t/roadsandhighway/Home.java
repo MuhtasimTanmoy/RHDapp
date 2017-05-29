@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class Home extends AppCompatActivity {
         //number="01770652767";
         bottomBar= (BottomBar) findViewById(R.id.bottomBar);
         fab=(FloatingActionButton) findViewById(R.id.triggerMessage);
+
 
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             Fragment fragment;
@@ -107,6 +109,8 @@ public class Home extends AppCompatActivity {
 
 
     }
+
+
 
     void performSMS(String number,String body){
 

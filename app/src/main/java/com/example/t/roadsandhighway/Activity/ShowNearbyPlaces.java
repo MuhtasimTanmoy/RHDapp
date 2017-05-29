@@ -20,7 +20,7 @@ import com.google.android.gms.vision.face.LargestFaceFocusingProcessor;
 
 import java.util.ArrayList;
 
-public class    ShowNearbyPlaces extends AppCompatActivity implements OnMapReadyCallback {
+public class ShowNearbyPlaces extends AppCompatActivity implements OnMapReadyCallback {
 
 
     ArrayList<LatLng> latLngs;
