@@ -118,7 +118,7 @@
                 android:clickable="true"
                 android:elevation="4dp"
                 android:padding="20dp"
-                android:text="Status Count" />
+                android:text="Status Count: 7" />
 
             <Button
                 android:layout_width="250dp"

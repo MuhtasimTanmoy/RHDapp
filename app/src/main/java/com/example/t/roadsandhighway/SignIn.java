@@ -82,8 +82,8 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
 //
 //
 //                            }
-//                            Intent intent = new Intent(getApplicationContext(), Home.class);
-                            Intent intent = new Intent(getApplicationContext(), SignIn.class);
+                            Intent intent = new Intent(getApplicationContext(), Home.class);
+                            //Intent intent = new Intent(getApplicationContext(), SignIn.class);
 
                             startActivity(intent);
 
