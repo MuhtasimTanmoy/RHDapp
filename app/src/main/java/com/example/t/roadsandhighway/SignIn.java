@@ -128,6 +128,7 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
             if (status.equals("true")) {
                 Intent intent = new Intent(getApplicationContext(), Home.class);
                 startActivity(intent);
+                finish();
 
             }
 

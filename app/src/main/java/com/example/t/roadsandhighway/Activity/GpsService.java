@@ -17,6 +17,8 @@ import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.List;
+
 /**
  * Created by t on 5/6/17.
  */
@@ -25,7 +27,6 @@ public class GpsService extends Service {
     private LocationListener listener;
     private LocationManager locationManager;
     private static String TAG = "GPS_TAG";
-    public static LatLng locationLatlng;
 
     @Nullable
     @Override
@@ -35,14 +36,14 @@ public class GpsService extends Service {
 
     @Override
     public void onCreate() {
-        Log.v(TAG, String.valueOf("location: "+"Started"));
-
+        Log.d(TAG,"HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
         listener = new LocationListener() {
+
+
 
             @Override
             public void onLocationChanged(Location location) {
-                Log.v(TAG, String.valueOf("location: " + location.getLatitude()) + "  " + String.valueOf(location.getLongitude()));
-                locationLatlng = new LatLng(location.getLatitude(), location.getLongitude());
+                Log.v(TAG, String.valueOf("location: "+location.getLatitude())+"  "+String.valueOf(location.getLongitude()));
             }
 
             @Override
@@ -73,15 +74,21 @@ public class GpsService extends Service {
     }
 
 
+
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (locationManager != null) {
+        if(locationManager != null){
             //noinspection MissingPermission
             locationManager.removeUpdates(listener);
         }
     }
 
 
-}
+    public interface CallBack {
+        void onSuccess(LatLng list);
 
+        void onFail(String msg);
+    }
+
+}

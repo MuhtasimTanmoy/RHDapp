@@ -143,6 +143,14 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
         //supportMapFragment = (SupportMapFragment) getFragmentManager().findFragmentById(R.id.mapfragment);
         supportMapFragment = (SupportMapFragment) this.getChildFragmentManager()
                 .findFragmentById(R.id.mapfragment);
+        supportMapFragment.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(23.727358, 90.389717), 7 ), 2000, null);
+
+            }
+        });
+
 
         // create a new instance
         mMeteor = new Meteor(getContext(), "ws://52.175.255.59/websocket", new InMemoryDatabase());
@@ -191,6 +199,7 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
         close.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+
 
                 holder.setVisibility(View.INVISIBLE);
                 openHolder.setVisibility(View.VISIBLE);
@@ -266,7 +275,7 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
 //                        intent.putExtra("locList", (Serializable) list);
 //                        startActivity(intent);
                         pathList = list;
-                        supportMapFragment.getMapAsync(MapAPIfragment.this);
+                        //supportMapFragment.getMapAsync(MapAPIfragment.this);
 
                         fetchData();
                     }
@@ -279,7 +288,7 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
 
             }
         });
-        supportMapFragment.getMapAsync(this);
+        //supportMapFragment.getMapAsync(this);
 
         return v;
     }
@@ -421,6 +430,8 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
                 }
             };
             timerThread.start();
+
+
 
             //googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(23.727358, 90.389717), 10), 2000, null);
 

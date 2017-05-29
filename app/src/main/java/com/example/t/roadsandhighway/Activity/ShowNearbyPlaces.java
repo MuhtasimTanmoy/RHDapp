@@ -6,6 +6,7 @@ import android.support.annotation.IntegerRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.t.roadsandhighway.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -37,6 +38,9 @@ public class ShowNearbyPlaces extends AppCompatActivity implements OnMapReadyCal
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        Toast.makeText(getApplicationContext(),"All nearby hospitals",Toast.LENGTH_LONG).show();
+
+
         Log.d("ShowMarker", latLngs.size()+"");
     }
 
@@ -48,7 +52,7 @@ public class ShowNearbyPlaces extends AppCompatActivity implements OnMapReadyCal
         // and move the map's camera to the same location.
         for (LatLng latLng : latLngs) {
             googleMap.addMarker(new MarkerOptions().position(latLng)
-                    .title("found"));
+                    .title("Hospital"));
            // googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
             if(b==true){
             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15), 2000, null);

@@ -30,6 +30,8 @@ import java.util.ArrayList;
 
 public class NearByPlaces extends AppCompatActivity {
 
+    private boolean helper;
+
     private Button lat;
     private EditText etRadius;
     private Button btnSubmit;
@@ -57,7 +59,9 @@ public class NearByPlaces extends AppCompatActivity {
         pDialog = new ProgressDialog(this);
         pDialog.setMessage("Please wait...");
         pDialog.setCancelable(false);
-        foo(getApplicationContext());
+        //foo(getApplicationContext());
+        helper=false;
+
        // makeJsonObjectRequest();
 
 //        btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +109,7 @@ public class NearByPlaces extends AppCompatActivity {
 
     private void makeJsonObjectRequest(String latlng) {
 
-        String urlJsonObj = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+latlng+"&radius=1000&type=restaurant&key="
+        String urlJsonObj = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+latlng+"&radius=1000&type=hospital&key="
                 +"AIzaSyAuDPbEB8OfpLi2aXcPa4KnTQyiuQurZ_Y";
 
         Log.d("Location", "my location is done" + urlJsonObj);
@@ -173,6 +177,21 @@ public class NearByPlaces extends AppCompatActivity {
         AppController.getInstance().addToRequestQueue(jsonObjReq);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(helper){
+            helper=false;
+            super.onBackPressed();
+        }
+        else {
+            helper=true;
+            foo(getApplicationContext());
+
+        }
+
+        //super.onBackPressed();
+    }
 
     private void showpDialog() {
         if (!pDialog.isShowing())

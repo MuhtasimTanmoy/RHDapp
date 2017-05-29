@@ -1,31 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/telenorBlue"
     tools:context="com.example.t.roadsandhighway.Activity.ShowNearbyPlaces">
+
+    <Button
+        android:id="@+id/stopService"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="top"
+
+        android:background="@color/telenorBlue"
+        android:gravity="top"
+        android:text="Click to Stop"
+        android:textAllCaps="true"
+        android:textSize="28sp"
+        android:textAlignment="center"
+        android:textColor="@color/white" />
 
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/lmap"
+
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         tools:context="com.example.mapwithmarker.MapsMarkerActivity" />
 
 
-    <Button
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="15dp"
-        android:layout_gravity="center"
-        android:text="Stop"
-        android:gravity="top"
-        android:textColor="@color/white"
-        android:background="@drawable/bluebutton"
-        android:id="@+id/stopService"
-        android:visibility="invisible"/>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
