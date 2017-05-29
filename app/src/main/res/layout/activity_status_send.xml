@@ -73,36 +73,23 @@ android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <EditText
+        <AutoCompleteTextView
+            android:id="@+id/myLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:maxLines="1"
-            android:id="@+id/etTrafficVolume"
-            android:hint="Traffic Volume"
-            android:inputType="textPersonName"/>
-    </android.support.design.widget.TextInputLayout>
-
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:id="@+id/etAverageSpeed"
+            android:completionThreshold="1"
+            android:textColor="@color/telenorBlue"
+            android:drawableRight="@drawable/ic_gps_black"
             android:ems="10"
-            android:hint="Average Speed"
-            android:inputType="textPersonName" />
+            android:hint="Location">
+
+            <requestFocus />
+        </AutoCompleteTextView>
+
     </android.support.design.widget.TextInputLayout>
+
+
+
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"

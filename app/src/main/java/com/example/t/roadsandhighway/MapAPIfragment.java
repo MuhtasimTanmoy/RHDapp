@@ -79,6 +79,7 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
     // ImageButton gpsEnable;
 
     Button getRoute;
+    Button getNav;
     private static String TAG = "auto";
 
     TripPathShow tripPathShow;
@@ -108,16 +109,16 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
         View v = inflater.inflate(R.layout.fragment_mapapi, container,
                 false);
 
-
+        getNav = (Button) v.findViewById(R.id.getNav);
         autoCompViewD = (AutoCompleteTextView) v.findViewById(R.id.autoCompleteTextViewD);
-        holder= (LinearLayout) v.findViewById(R.id.holder);
-        openHolder= (LinearLayout) v.findViewById(R.id.openHolder);
-        open= (TextView) v.findViewById(R.id.open);
-        near= (Button) v.findViewById(R.id.getNear);
+        holder = (LinearLayout) v.findViewById(R.id.holder);
+        openHolder = (LinearLayout) v.findViewById(R.id.openHolder);
+        open = (TextView) v.findViewById(R.id.open);
+        near = (Button) v.findViewById(R.id.getNear);
         autoCompViewD.setAdapter(new GooglePlacesAutocompleteAdapter(getContext(), R.layout.list_item));
         autoCompViewD.setOnItemClickListener(this);
         autoCompViewS = (AutoCompleteTextView) v.findViewById(R.id.autoCompleteTextViewS);
-        close= (TextView) v.findViewById(R.id.close);
+        close = (TextView) v.findViewById(R.id.close);
         autoCompViewS.setAdapter(new GooglePlacesAutocompleteAdapter(getContext(), R.layout.list_item));
         autoCompViewS.setOnItemClickListener(this);
 
@@ -165,7 +166,15 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
         near.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getContext(), NearByPlaces.class);
+                Intent intent = new Intent(getContext(), NearByPlaces.class);
+                startActivity(intent);
+            }
+        });
+
+        getNav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), LiveNavActivity.class);
                 startActivity(intent);
             }
         });
@@ -176,8 +185,6 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
 
                 holder.setVisibility(View.INVISIBLE);
                 openHolder.setVisibility(View.VISIBLE);
-
-
 
 
                 return true;
@@ -227,8 +234,6 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
             public void onClick(View v) {
 
 
-
-
                 //Toast.makeText(getContext(),autoCompViewD.getText().toString()+autoCompViewS.getText().toString(),Toast.LENGTH_SHORT).show();
                 Log.d("check", getDesLatLng() + getSrcLatLng());
 
@@ -265,7 +270,7 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
 
     private ArrayList makeJsonObjectRequest(String input) {
 
-        String urlJsonObj = "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=" + input + "&types=establishment&location=23.726574,90.389868&radius=1000&strictbounds&key=AIzaSyAuDPbEB8OfpLi2aXcPa4KnTQyiuQurZ_Y\n";
+        String urlJsonObj = "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=" + input + "&types=establishment&location=23.726574,90.389868&radius=20000&strictbounds&key=AIzaSyAuDPbEB8OfpLi2aXcPa4KnTQyiuQurZ_Y\n";
 
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
@@ -512,7 +517,7 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
     @Override
     public void onResume() {
         super.onResume();
-        Toast.makeText(getContext(), "resumed", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), "resumed", Toast.LENGTH_SHORT).show();
         desLatLng = null;
         srcLatLng = null;
 

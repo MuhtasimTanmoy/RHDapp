@@ -1,12 +1,12 @@
 package com.example.t.roadsandhighway;
 
 import android.content.Context;
-import android.util.Log;
-
 import im.delight.android.ddp.Meteor;
 import im.delight.android.ddp.MeteorCallback;
 import im.delight.android.ddp.ResultListener;
 import im.delight.android.ddp.db.memory.InMemoryDatabase;
+
+import static com.example.t.roadsandhighway.StaticData.ADDRESS;
 
 /**
  * Created by vacuum on 5/11/17.
@@ -18,7 +18,7 @@ public class ComWithServer implements MeteorCallback {
     private boolean success;
 
     ComWithServer(Context context){
-        mMeteor = new Meteor(context, "ws://52.175.255.59/websocket",new InMemoryDatabase());
+        mMeteor = new Meteor(context,ADDRESS,new InMemoryDatabase());
 
         mMeteor.addCallback(this);
 

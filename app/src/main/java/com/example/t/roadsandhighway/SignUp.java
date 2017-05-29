@@ -18,6 +18,8 @@ import im.delight.android.ddp.MeteorCallback;
 import im.delight.android.ddp.ResultListener;
 import im.delight.android.ddp.db.memory.InMemoryDatabase;
 
+import static com.example.t.roadsandhighway.StaticData.ADDRESS;
+
 public class SignUp extends AppCompatActivity implements MeteorCallback {
 
 
@@ -102,7 +104,7 @@ public class SignUp extends AppCompatActivity implements MeteorCallback {
 
 
         // create a new instance
-        mMeteor = new Meteor(this, "ws://52.175.255.59/websocket",new InMemoryDatabase());
+        mMeteor = new Meteor(this,ADDRESS,new InMemoryDatabase());
 
         // register the callback that will handle events and receive messages
         mMeteor.addCallback(this);

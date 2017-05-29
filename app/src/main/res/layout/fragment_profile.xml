@@ -99,13 +99,16 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="3dp"
                 android:background="#fff"
                 android:clickable="true"
                 android:elevation="4dp"
                 android:padding="20dp"
-                android:text="Info" />
+                android:text="Contact" />
 
             <TextView
+
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -115,13 +118,18 @@
                 android:clickable="true"
                 android:elevation="4dp"
                 android:padding="20dp"
-                android:text="Info" />
+                android:text="Location" />
 
             <Button
-                android:id="@+id/btnProfileSignOut"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Sign out" />
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center"
+                android:text="Sign Out"
+                android:textColor="@color/white"
+                android:background="@drawable/bluebutton"
+                android:id="@+id/btnProfileSignOut" />
+
 
 
         </LinearLayout>

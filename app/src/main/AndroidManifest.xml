@@ -96,7 +96,9 @@
         </activity>
 
 
-        <activity android:name=".NewsfeedOnMap">
+        <activity android:name=".NewsfeedOnMap"/>
+        <activity android:name=".LiveNavActivity">
+
 
 
 

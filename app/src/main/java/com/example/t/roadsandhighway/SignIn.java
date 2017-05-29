@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -18,6 +19,8 @@ import im.delight.android.ddp.MeteorCallback;
 import im.delight.android.ddp.ResultListener;
 import im.delight.android.ddp.db.memory.InMemoryDatabase;
 
+import static com.example.t.roadsandhighway.StaticData.ADDRESS;
+
 public class SignIn extends AppCompatActivity implements MeteorCallback {
 
     private EditText etUsername, etPassword;
@@ -25,6 +28,7 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
     private Button btnSignUp;
     public static Meteor mMeteor;
     private static String TAG = "signInPage";
+    AutoCompleteTextView myLocation;
     DbHelper dbHelper = new DbHelper(this);
 
 
@@ -79,7 +83,7 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
 //
 //                            }
 //                            Intent intent = new Intent(getApplicationContext(), Home.class);
-                            Intent intent = new Intent(getApplicationContext(), NewsfeedOnMap.class);
+                            Intent intent = new Intent(getApplicationContext(), SignIn.class);
 
                             startActivity(intent);
 
@@ -101,7 +105,7 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), NewsfeedOnMap.class);
+                Intent intent = new Intent(getApplicationContext(), SignUp.class);
 //                Intent intent = new Intent(getApplicationContext(), SignUp.class);
 
                 startActivity(intent);
@@ -138,10 +142,10 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
         etPassword = (EditText) findViewById(R.id.etPassword);
         btnSignIn = (Button) findViewById(R.id.btnSignIn);
         btnSignUp = (Button) findViewById(R.id.btnSignUp);
-
+        myLocation= (AutoCompleteTextView) findViewById(R.id.myLocation);
 
         // create a new instance
-        mMeteor = new Meteor(this, "ws://52.175.255.59/websocket",new InMemoryDatabase());
+        mMeteor = new Meteor(this, ADDRESS,new InMemoryDatabase());
 
         // register the callback that will handle events and receive messages
         mMeteor.addCallback(this);
@@ -173,12 +177,19 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
 
             JSONObject jsonObject= null;
             try {
-                jsonObject = new JSONObject(newValuesJson);
-                JSONObject profile=jsonObject.getJSONObject("profile");
 
-                dbHelper.insertUserDetails(jsonObject.getString("username"),
-                        profile.getString("type"),profile.getString("contactNo"),
-                        profile.getString("address"), etPassword.getText().toString());
+                int row = dbHelper.numberOfRows("users");
+                // Toast.makeText(getApplicationContext(), "  "+row , Toast.LENGTH_SHORT).show();
+                Log.d("profile",row+" ");
+                if (row == 0) {
+                    jsonObject = new JSONObject(newValuesJson);
+                    JSONObject profile=jsonObject.getJSONObject("profile");
+
+                    dbHelper.insertUserDetails(jsonObject.getString("username"),
+                            profile.getString("type"),profile.getString("contactNo"),
+                            profile.getString("address"), etPassword.getText().toString());
+
+                }
 
             } catch (JSONException e) {
                 e.printStackTrace();

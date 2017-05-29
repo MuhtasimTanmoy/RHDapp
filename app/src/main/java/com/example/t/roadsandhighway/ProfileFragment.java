@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +58,7 @@ public class ProfileFragment extends Fragment {
 
         int row = dbHelper.numberOfRows("users");
         // Toast.makeText(getApplicationContext(), "  "+row , Toast.LENGTH_SHORT).show();
+        Log.d("profile",row+" ");
         if (row == 1) {
             Cursor res = dbHelper.getUserDetails(1);
             res.moveToFirst();

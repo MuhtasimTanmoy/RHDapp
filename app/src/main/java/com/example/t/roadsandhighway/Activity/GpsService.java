@@ -35,6 +35,8 @@ public class GpsService extends Service {
 
     @Override
     public void onCreate() {
+        Log.v(TAG, String.valueOf("location: "+"Started"));
+
         listener = new LocationListener() {
 
             @Override

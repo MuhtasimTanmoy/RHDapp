@@ -36,7 +36,7 @@ public class StatusSend extends AppCompatActivity implements AdapterView.OnItemS
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_status_send);
+       // setContentView(R.layout.activity_status_send);
 
         View view = this.getCurrentFocus();
         if (view != null) {
@@ -89,8 +89,8 @@ public class StatusSend extends AppCompatActivity implements AdapterView.OnItemS
 
         comWithServer = new ComWithServer(getApplicationContext());
 
-        etAverageSpeed = (EditText) findViewById(R.id.etAverageSpeed);
-        etTrafficVolume = (EditText) findViewById(R.id.etTrafficVolume);
+        //etAverageSpeed = (EditText) findViewById(R.id.etAverageSpeed);
+        //etTrafficVolume = (EditText) findViewById(R.id.etTrafficVolume);
         etNotes = (EditText) findViewById(R.id.etNotes);
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
         spnrTrafficLevel = (Spinner) findViewById(R.id.spnrTrafficLevel);
