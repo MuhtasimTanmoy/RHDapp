@@ -1,5 +1,6 @@
 package com.example.t.roadsandhighway;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,7 +28,17 @@ public class SignUp extends AppCompatActivity implements MeteorCallback {
     private Button btnSingUp,btnLogIn;
     private Meteor mMeteor;
     private static String TAG = "signUpPage";
+    private ProgressDialog pDialog;
 
+    private void showpDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hidepDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,43 +50,47 @@ public class SignUp extends AppCompatActivity implements MeteorCallback {
             @Override
             public void onClick(View v) {
                // Toast.makeText(getApplicationContext(), "Not granted", Toast.LENGTH_SHORT).show();
-                if (mMeteor.isConnected() && etPassword.getText().toString().equals(etConfirmPassword.getText().toString())) {
-                    final Map<String, Object> values = new HashMap<String, Object>();
-//                    username: data.username,
-//                            password: data.password,
-//                            profile:{
-//                        type: "Reporter",
-//                                contactNo: data.contactNo,
-//                                address: data.address,
-//                                latitude: data.latitude,
-//                                longitude: data.longitude,
-//                    }
-                    values.put("username", etUsername.getText().toString());
-                    values.put("password", etPassword.getText().toString());
-                    values.put("contactNo", etCoNtactNo.getText().toString());
-                    values.put("address",etAddress.getText().toString());
-                    values.put("latitude", Double.parseDouble(etLaitude.getText().toString()));
-                    values.put("longitude", Double.parseDouble(etLongitude.getText().toString()));
-                    Object[] queryParams = {values};
+                if (mMeteor.isConnected() ) {
+                    if(etPassword.getText().toString().equals(etConfirmPassword.getText().toString())){
+                        showpDialog();
+                        final Map<String, Object> values = new HashMap<String, Object>();
+                        values.put("username", etUsername.getText().toString());
+                        values.put("password", etPassword.getText().toString());
+                        values.put("contactNo", etCoNtactNo.getText().toString());
+                        values.put("address",etAddress.getText().toString());
+                        values.put("latitude", Double.parseDouble(etLaitude.getText().toString()));
+                        values.put("longitude", Double.parseDouble(etLongitude.getText().toString()));
+                        Object[] queryParams = {values};
 
-                    mMeteor.call("user.create", queryParams, new ResultListener() {
+                        mMeteor.call("user.create", queryParams, new ResultListener() {
 
-                        @Override
-                        public void onSuccess(String result) {
-                            Log.d(TAG, "success  in inserting");
-                            Intent intent = new Intent(getApplicationContext(), Administer.class);
-                            startActivity(intent);
+                            @Override
+                            public void onSuccess(String result) {
+                                hidepDialog();
+                                Log.d(TAG, "success  in inserting");
+                                Intent intent = new Intent(getApplicationContext(), Administer.class);
+                                startActivity(intent);
 
-                        }
+                            }
 
-                        @Override
-                        public void onError(String error, String reason, String details) {
-                            Log.d(TAG, "Error: " + error + " " + reason + " " + details);
-                            Toast.makeText(getApplicationContext(), "Enter valid information", Toast.LENGTH_SHORT).show();
+                            @Override
+                            public void onError(String error, String reason, String details) {
+                                hidepDialog();
+                                Log.d(TAG, "Error: " + error + " " + reason + " " + details);
+                                Toast.makeText(getApplicationContext(), "Enter valid information", Toast.LENGTH_SHORT).show();
 
 
-                        }
-                    });
+                            }
+                        });
+
+                    }else{
+                        Toast.makeText(getApplicationContext(), "Password not matched", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                }else{
+                    Toast.makeText(getApplicationContext(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                    mMeteor.connect();
 
                 }
             }
@@ -92,6 +107,11 @@ public class SignUp extends AppCompatActivity implements MeteorCallback {
 
 
     private void init() {
+
+        pDialog = new ProgressDialog(this);
+        pDialog.setMessage("Please wait...");
+        pDialog.setCancelable(false);
+
         etUsername = (EditText) findViewById(R.id.etSignUpUsername);
         etPassword = (EditText) findViewById(R.id.etSignUpPassword);
         etConfirmPassword = (EditText) findViewById(R.id.etSignUpConfirmPasword);
