@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/base_color"
+
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:orientation="vertical"
+        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/myrsp"
+            android:layout_gravity="center_horizontal"
+            />
+        </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/ETA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/header_cover_image"
+            android:background="@drawable/profile_border"
+            android:elevation="5dp"
+            android:padding="20dp"
+            android:layout_margin="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_near_me_black_24dp"
+            android:layout_weight="1"
+            />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ETA"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/FORECAST"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/header_cover_image"
+            android:background="@drawable/profile_border"
+            android:elevation="5dp"
+            android:padding="20dp"
+            android:layout_margin="10dp"
+            android:scaleType="centerCrop"
+            android:layout_weight="1"
+            android:src="@drawable/ic_call_received_black_24dp"
+            />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Forecast"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+        <ImageButton
+            android:id="@+id/RECENT_INCIDENT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/header_cover_image"
+            android:background="@drawable/profile_border"
+            android:elevation="5dp"
+            android:padding="20dp"
+            android:layout_margin="10dp"
+            android:scaleType="centerCrop"
+            android:layout_weight="1"
+            android:src="@drawable/ic_traffic_black_24dp"
+            />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recent Incident"
+                    android:textColor="@color/white"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/NEAR_ME"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/header_cover_image"
+            android:background="@drawable/profile_border"
+            android:elevation="5dp"
+            android:padding="20dp"
+            android:layout_margin="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_location_on_black_24dp"
+            android:layout_weight="1"
+            />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Near Me"
+                    android:textColor="@color/white"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+        <ImageButton
+            android:id="@+id/ALTERNATIVE_ROUTE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/header_cover_image"
+            android:background="@drawable/profile_border"
+            android:elevation="5dp"
+            android:padding="20dp"
+            android:layout_margin="10dp"
+            android:scaleType="centerCrop"
+            android:layout_weight="1"
+            android:src="@drawable/ic_call_split_black_24dp"
+            />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Alternative Route"
+                        android:textColor="@color/white"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+        <ImageButton
+            android:id="@+id/BENEFITS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/header_cover_image"
+            android:background="@drawable/profile_border"
+            android:elevation="5dp"
+            android:padding="20dp"
+            android:layout_margin="10dp"
+            android:scaleType="centerCrop"
+            android:layout_weight="1"
+            android:src="@drawable/ic_fiber_smart_record_black_24dp"
+            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Benefits"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"/>
+
+                    </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/AWARD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/header_cover_image"
+            android:background="@drawable/profile_border"
+            android:elevation="5dp"
+            android:padding="20dp"
+            android:layout_margin="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_star_black_24dp"
+            android:layout_weight="1"
+            />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Award"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+        <ImageButton
+            android:id="@+id/FEEDBACK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/header_cover_image"
+            android:background="@drawable/profile_border"
+            android:elevation="5dp"
+            android:padding="20dp"
+            android:layout_margin="10dp"
+            android:scaleType="centerCrop"
+            android:layout_weight="1"
+            android:src="@drawable/ic_message_black_24dp"
+            />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Feedback"
+                    android:textColor="@color/white"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+        <ImageButton
+            android:id="@+id/EMERGENCY_CALL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/header_cover_image"
+            android:background="@drawable/profile_border"
+            android:elevation="5dp"
+            android:padding="20dp"
+            android:layout_margin="10dp"
+            android:scaleType="centerCrop"
+            android:layout_weight="1"
+            android:src="@drawable/ic_local_phone_black_24dp"
+            />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Emergency Call"
+                        android:textColor="@color/white"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+    </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerHorizontal="true">
+
+            <ImageButton
+
+
+                android:id="@+id/POST_INCIDENT"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:layout_below="@+id/header_cover_image"
+
+                android:layout_margin="5dp"
+                android:background="@drawable/profile_border"
+                android:elevation="5dp"
+                android:padding="20dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_photo_camera_black_24dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Post Incident"
+                    android:textColor="@color/white"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</ScrollView>

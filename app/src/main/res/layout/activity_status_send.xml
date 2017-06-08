@@ -38,6 +38,19 @@ android:background="@color/white"
 
             />
 
+        <Spinner
+            android:id="@+id/spnrTrafficLevel"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:spinnerMode="dialog"
+            android:layout_gravity="bottom"
+            android:background="@drawable/profile_border"
+
+
+
+            />
+
+
 
     </FrameLayout>
 
@@ -62,11 +75,7 @@ android:background="@color/white"
 
 
 
-    <Spinner
-        android:id="@+id/spnrTrafficLevel"
-        android:layout_width="362dp"
-        android:layout_height="wrap_content"
-        />
+
 
     <android.support.design.widget.TextInputLayout
         android:layout_marginTop="30dp"

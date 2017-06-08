@@ -105,8 +105,8 @@ class GooglePlacesAutocompleteAdapter extends ArrayAdapter implements Filterable
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
-                Toast.makeText(getContext(),
-                        error.getMessage(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(),
+//                        error.getMessage(), Toast.LENGTH_SHORT).show();
                 // hide the progress dialog
 
             }

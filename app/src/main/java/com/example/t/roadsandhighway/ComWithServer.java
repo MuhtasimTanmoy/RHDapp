@@ -1,6 +1,8 @@
 package com.example.t.roadsandhighway;
 
 import android.content.Context;
+import android.util.Log;
+
 import im.delight.android.ddp.Meteor;
 import im.delight.android.ddp.MeteorCallback;
 import im.delight.android.ddp.ResultListener;
@@ -32,11 +34,15 @@ public class ComWithServer implements MeteorCallback {
 
             @Override
             public void onSuccess(String result) {
+
+                Log.d("Status",result);
                 success=true;
             }
 
             @Override
             public void onError(String error, String reason, String details) {
+
+                Log.d("Status",error+reason+details);
                 success=false;
             }
         });
