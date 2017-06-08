@@ -57,7 +57,7 @@ public class Home extends AppCompatActivity {
                 }
                 else if(tabId==R.id.tab_info){
                     fab.setVisibility(View.INVISIBLE);
-                    fragment=new ProfileFragment();
+                   // fragment=new ProfileFragment();
 //                    fragment= new StatusSend();
 
                 }

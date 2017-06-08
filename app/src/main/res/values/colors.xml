@@ -3,8 +3,9 @@
 
     <color name="white">#FFFFFF</color>
     <color name="red_pref">#e66f74</color>
+    <color name="need">#00695c</color>
 
-    <color name="telenorBlue">#003440</color>
+    <color name="telenorBlue">#0095b7</color>
     <color name="prev_base">#00ACE7</color>
     <color name="darkBlue">#0091D2</color>
     <color name="colorPrimary">#3F51B5</color>

@@ -17,7 +17,7 @@ android:background="@color/white"
     android:orientation="vertical">
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="200dp"
         android:background="@color/telenorBlue"
         >
         <TextView
@@ -42,9 +42,8 @@ android:background="@color/white"
             android:id="@+id/spnrTrafficLevel"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:spinnerMode="dialog"
             android:layout_gravity="bottom"
-            android:background="@drawable/profile_border"
+            android:background="@drawable/spinnerborder"
 
 
 
@@ -66,7 +65,7 @@ android:background="@color/white"
     android:orientation="vertical"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
-    android:paddingTop="25dp"
+    android:paddingTop="10dp"
     android:weightSum="1">
 
 

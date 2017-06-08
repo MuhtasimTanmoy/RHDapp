@@ -40,6 +40,8 @@ public class StatusSendActivity extends AppCompatActivity implements AdapterView
     final List<String> categories = new ArrayList<String>();
     ComWithServer comWithServer;
     final Map<String, Object> values = new HashMap<String, Object>();
+    private Map<String, String> trafiic = new HashMap<String, String>();
+
 
 
 
@@ -151,7 +153,7 @@ public class StatusSendActivity extends AppCompatActivity implements AdapterView
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         //Toast.makeText(getApplicationContext(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
-        values.put("level", categories.get(position));
+        values.put("level", trafiic.get(categories.get(position)));
         Log.v(TAG, "" + position);
 
     }
@@ -169,12 +171,21 @@ public class StatusSendActivity extends AppCompatActivity implements AdapterView
 
 
         // Spinner Drop down elements
-        categories.add("TJ-1");
-        categories.add("TJ-2");
-        categories.add("TJ-3");
-        categories.add("TJ-4");
-        categories.add("TJ-5");
-        categories.add("TJ-6");
+
+        trafiic.put("Traffic Jam : Level 1","TJ-1");
+        trafiic.put("Traffic Jam : Level 2","TJ-2");
+        trafiic.put("Traffic Jam : Level 3","TJ-3");
+        trafiic.put("Traffic Jam : Level 4","TJ-4");
+        trafiic.put("Traffic Jam : Level 5","TJ-5");
+        trafiic.put("Traffic Jam : Level 6","TJ-6");
+
+
+        categories.add("Traffic Jam : Level 1");
+        categories.add("Traffic Jam : Level 2");
+        categories.add("Traffic Jam : Level 3");
+        categories.add("Traffic Jam : Level 4");
+        categories.add("Traffic Jam : Level 5");
+        categories.add("Traffic Jam : Level 6");
 
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, categories);

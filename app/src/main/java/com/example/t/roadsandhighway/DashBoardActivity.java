@@ -15,21 +15,64 @@ import android.widget.ImageButton;
 public class DashBoardActivity extends AppCompatActivity {
 
     ImageButton post_incident;
+    ImageButton eta;
+    ImageButton forecast;
+    ImageButton recent_incident;
+    ImageButton near_me;
+    ImageButton alternative_route;
+    ImageButton benefits;
+    ImageButton award;
+    ImageButton emergency_call;
+    ImageButton feedback;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.dashboard);
-        post_incident= (ImageButton) findViewById(R.id.POST_INCIDENT);
+        init();
+
+
+    }
+
+
+    void init() {
+        post_incident = (ImageButton) findViewById(R.id.POST_INCIDENT);
 
         post_incident.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(),StatusSendActivity.class);
+                Intent intent = new Intent(getApplicationContext(), StatusSendActivity.class);
                 startActivity(intent);
 
             }
+
+        });
+
+        eta = (ImageButton) findViewById(R.id.ETA);
+
+        eta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LiveNavActivity.class);
+                startActivity(intent);
+
+            }
+
+        });
+
+        benefits = (ImageButton) findViewById(R.id.BENEFITS);
+
+        benefits.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                startActivity(intent);
+
+            }
+
         });
 
     }
+
 }
