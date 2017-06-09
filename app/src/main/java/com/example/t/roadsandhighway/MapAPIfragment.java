@@ -391,7 +391,7 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
             for (StatusObject statusObject : statusList) {
                 LatLng latLng = new LatLng(statusObject.lat, statusObject.lng);
                 googleMap.addMarker(new MarkerOptions().position(latLng)
-                        .title(statusObject.level + " "));
+                        .title(statusObject.level + " ")).showInfoWindow();
 //            + statusObject.trafficVolume + " "
 //                    + statusObject.averageSpeed
                 //googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
@@ -399,6 +399,11 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
         }
 
         if (pathList.size() > 0) {
+            final CameraPosition cameraPosition = new CameraPosition.Builder()
+                    .target(pathList.get(1))      // Sets the center of the map to Mountain View// Sets the zoom// Sets the orientation of the camera to east
+                    .tilt(45)                   // Sets the tilt of the camera to 30 degrees
+                    .build();
+            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 2000, null);
 
 
             Polyline line = googleMap.addPolyline(new PolylineOptions()
@@ -408,7 +413,8 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
                     .geodesic(true)
             );
 
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(23.727358, 90.389717), 15), 2000, null);
+
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(pathList.get(0), 15), 2000, null);
 
             Thread timerThread = new Thread() {
                 public void run() {

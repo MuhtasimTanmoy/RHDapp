@@ -44,6 +44,8 @@ public class NearByPlaces extends AppCompatActivity {
 
     private String jsonResponse;
 
+    private String searchFor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +57,9 @@ public class NearByPlaces extends AppCompatActivity {
         txtResponse = (TextView) findViewById(R.id.txtResponse);
         lat= (Button) findViewById(R.id.showLatLang);
 
+        searchFor=getIntent().getStringExtra("getSearchString");
+
+        Log.d("seeit",searchFor);
 
         pDialog = new ProgressDialog(this);
         pDialog.setMessage("Please wait...");
@@ -109,7 +114,7 @@ public class NearByPlaces extends AppCompatActivity {
 
     private void makeJsonObjectRequest(String latlng) {
 
-        String urlJsonObj = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+latlng+"&radius=1000&type=hospital&key="
+        String urlJsonObj = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+latlng+"&radius=1000&type="+searchFor+"&key="
                 +"AIzaSyAuDPbEB8OfpLi2aXcPa4KnTQyiuQurZ_Y";
 
         Log.d("Location", "my location is done" + urlJsonObj);
@@ -148,6 +153,7 @@ public class NearByPlaces extends AppCompatActivity {
 
 
                     Intent intent= new Intent(getApplicationContext(), ShowNearbyPlaces.class);
+                    intent.putExtra("searchFor",searchFor);
                     intent.putExtra("locList", latLngs);
                     Log.d(TAG, latLngs.size()+"");
 

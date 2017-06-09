@@ -6,31 +6,19 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <TextView
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/searchForPlaceText"
-        android:text="Search for"
-        android:layout_gravity="center_horizontal"
-        />
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/bGetRestaurent"
         android:text="Restaurents"
-        android:id="@+id/setRestaurent"/>
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/bluebutton"/>
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hospital"
-        android:id="@+id/setHospital"/>
-
-</LinearLayout>
+        android:id="@+id/bGetHospitals"
+        android:text="Hospitals"
+        android:background="@drawable/bluebutton"/>
 
 
 </LinearLayout>

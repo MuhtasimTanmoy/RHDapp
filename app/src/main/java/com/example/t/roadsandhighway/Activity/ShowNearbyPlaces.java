@@ -13,6 +13,9 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
@@ -25,6 +28,7 @@ public class ShowNearbyPlaces extends AppCompatActivity implements OnMapReadyCal
 
 
     ArrayList<LatLng> latLngs;
+    private String searchFor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +36,14 @@ public class ShowNearbyPlaces extends AppCompatActivity implements OnMapReadyCal
         setContentView(R.layout.activity_show_nearby_places);
 
         Intent i = getIntent();
+        searchFor=getIntent().getStringExtra("searchFor");
         latLngs = (ArrayList<LatLng>) i.getSerializableExtra("locList");
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        Toast.makeText(getApplicationContext(),"All nearby hospitals",Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(),"All nearby"+searchFor,Toast.LENGTH_LONG).show();
 
 
         Log.d("ShowMarker", latLngs.size()+"");
@@ -48,14 +53,29 @@ public class ShowNearbyPlaces extends AppCompatActivity implements OnMapReadyCal
     @Override
     public void onMapReady(GoogleMap googleMap) {
         boolean b=true;
+        BitmapDescriptor icon;
+        Log.d("seeIt","IIIII"+searchFor);
+        if(searchFor!="hospital"){
+            Log.d("seeIt","What the");
+            icon= BitmapDescriptorFactory.fromResource(R.drawable.ic_restaurant_black_24dp);
+
+        }
+        else {
+
+         icon = BitmapDescriptorFactory.fromResource(R.drawable.ic_add_circle_outline_black_24dp);
+        }
         // Add a marker in Sydney, Australia,
         // and move the map's camera to the same location.
         for (LatLng latLng : latLngs) {
             googleMap.addMarker(new MarkerOptions().position(latLng)
-                    .title("Hospital"));
+                    .icon(icon));
            // googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
             if(b==true){
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15), 2000, null);
+                final CameraPosition cameraPosition = new CameraPosition.Builder()
+                        .target(latLng)      // Sets the center of the map to Mountain View// Sets the zoom// Sets the orientation of the camera to east
+                        .tilt(60).zoom(18)
+                        .build();
+            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition) ,2000, null);
             b=false;}
 
 

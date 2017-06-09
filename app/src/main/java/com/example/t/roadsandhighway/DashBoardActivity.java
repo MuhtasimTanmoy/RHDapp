@@ -115,30 +115,31 @@ public class DashBoardActivity extends AppCompatActivity {
         AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(this);
         alertDialogBuilderUserInput.setView(mView);
 
-        final Button setHospital = (Button) mView.findViewById(R.id.setHospital);
-        final TextView searchFor= (TextView) mView.findViewById(R.id.searchForPlaceText);
+        final Button setHospital = (Button) mView.findViewById(R.id.bGetHospitals);
 
-        final Button setRestaurent = (Button) mView.findViewById(R.id.setRestaurent);
+        final Button setRestaurent = (Button) mView.findViewById(R.id.bGetRestaurent);
+
+        setRestaurent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplication(),NearByPlaces.class);
+                intent.putExtra("getSearchString","food");
+                startActivity(intent);
+            }
+        });
+
+        setHospital.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplication(),NearByPlaces.class);
+                intent.putExtra("getSearchString","hospital");
+
+                startActivity(intent);
+            }
+        });
 
         alertDialogBuilderUserInput
-                .setCancelable(false)
-                .setPositiveButton("Search", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogBox, int id) {
-                        // ToDo get user input here
-                        String message=searchFor.getText().toString();
-                        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-
-
-                    }
-                })
-
-                .setNegativeButton("Cancel",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialogBox, int id) {
-                                dialogBox.cancel();
-                            }
-                        });
-
+                .setCancelable(true);
         AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
         alertDialogAndroid.show();
 
