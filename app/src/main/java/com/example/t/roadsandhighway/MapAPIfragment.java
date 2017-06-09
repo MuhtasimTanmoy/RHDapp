@@ -37,6 +37,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
@@ -75,12 +76,11 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
 
     TextView open;
 
-    Button near;
 
     // ImageButton gpsEnable;
 
     Button getRoute;
-    Button getNav;
+
     private static String TAG = "auto";
 
     TripPathShow tripPathShow;
@@ -114,12 +114,11 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
         View v = inflater.inflate(R.layout.fragment_mapapi, container,
                 false);
 
-        getNav = (Button) v.findViewById(R.id.getNav);
+
         autoCompViewD = (AutoCompleteTextView) v.findViewById(R.id.autoCompleteTextViewD);
         holder = (LinearLayout) v.findViewById(R.id.holder);
         openHolder = (LinearLayout) v.findViewById(R.id.openHolder);
         open = (TextView) v.findViewById(R.id.open);
-        near = (Button) v.findViewById(R.id.getNear);
         autoCompViewD.setAdapter(new GooglePlacesAutocompleteAdapter(getContext(), R.layout.list_item));
         autoCompViewD.setOnItemClickListener(this);
         autoCompViewS = (AutoCompleteTextView) v.findViewById(R.id.autoCompleteTextViewS);
@@ -143,10 +142,18 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
         //supportMapFragment = (SupportMapFragment) getFragmentManager().findFragmentById(R.id.mapfragment);
         supportMapFragment = (SupportMapFragment) this.getChildFragmentManager()
                 .findFragmentById(R.id.mapfragment);
+        final CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(new LatLng(23.727358, 90.389717))      // Sets the center of the map to Mountain View
+                .zoom(7)                   // Sets the zoom
+                .bearing(0)                // Sets the orientation of the camera to east
+                .tilt(45)                   // Sets the tilt of the camera to 30 degrees
+                .build();
         supportMapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
-                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(23.727358, 90.389717), 7 ), 2000, null);
+                //googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(23.727358, 90.389717), 7 ));
+                googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
 
             }
         });
@@ -180,21 +187,6 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
 //        });
 
 
-        near.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), NearByPlaces.class);
-                startActivity(intent);
-            }
-        });
-
-        getNav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), LiveNavActivity.class);
-                startActivity(intent);
-            }
-        });
 
         close.setOnTouchListener(new View.OnTouchListener() {
             @Override

@@ -31,9 +31,9 @@ import com.roughike.bottombar.OnTabSelectListener;
 public class Home extends AppCompatActivity {
 
     private BottomBar bottomBar;
-    private FloatingActionButton fab;
-    private String number;
-    private String message;
+//    private FloatingActionButton fab;
+//    private String number;
+//    private String message;
 
     final Context c=this;
     @Override
@@ -41,10 +41,10 @@ public class Home extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
-        number="04445650567";
+       // number="04445650567";
         //number="01770652767";
         bottomBar= (BottomBar) findViewById(R.id.bottomBar);
-        fab=(FloatingActionButton) findViewById(R.id.triggerMessage);
+        //fab=(FloatingActionButton) findViewById(R.id.triggerMessage);
 
 
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
@@ -52,17 +52,17 @@ public class Home extends AppCompatActivity {
             @Override
             public void onTabSelected(@IdRes int tabId) {
                 if(tabId==R.id.tab_maps){
-                    fab.setVisibility(View.INVISIBLE);
-                    fragment=new MapAPIfragment();
+                    //fab.setVisibility(View.INVISIBLE);
+                    //fragment=new MapAPIfragment();
                 }
                 else if(tabId==R.id.tab_info){
-                    fab.setVisibility(View.INVISIBLE);
+                   // fab.setVisibility(View.INVISIBLE);
                    // fragment=new ProfileFragment();
 //                    fragment= new StatusSend();
 
                 }
                 else if (tabId==R.id.tab_send){
-                    fab.setVisibility(View.VISIBLE);
+                    //fab.setVisibility(View.VISIBLE);
                     fragment=new StatusSendFragment();
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.contentContainer,fragment).commit();
@@ -70,40 +70,40 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               // Toast.makeText(getApplicationContext(),"fsdf",Toast.LENGTH_SHORT).show();
-                LayoutInflater layoutInflaterAndroid = LayoutInflater.from(c);
-                View mView = layoutInflaterAndroid.inflate(R.layout.dialog_box, null);
-                AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(c);
-                alertDialogBuilderUserInput.setView(mView);
-
-                final EditText userInputDialogEditText = (EditText) mView.findViewById(R.id.userInputDialog);
-                alertDialogBuilderUserInput
-                        .setCancelable(false)
-                        .setPositiveButton("Send", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialogBox, int id) {
-                                // ToDo get user input here
-                                message=userInputDialogEditText.getText().toString();
-                                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-                                performSMS(number,message);
-
-                            }
-                        })
-
-                        .setNegativeButton("Cancel",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialogBox, int id) {
-                                        dialogBox.cancel();
-                                    }
-                                });
-
-                AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
-                alertDialogAndroid.show();
-            }
-
-        });
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//               // Toast.makeText(getApplicationContext(),"fsdf",Toast.LENGTH_SHORT).show();
+//                LayoutInflater layoutInflaterAndroid = LayoutInflater.from(c);
+//                View mView = layoutInflaterAndroid.inflate(R.layout.dialog_box, null);
+//                AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(c);
+//                alertDialogBuilderUserInput.setView(mView);
+//
+//                final EditText userInputDialogEditText = (EditText) mView.findViewById(R.id.userInputDialog);
+//                alertDialogBuilderUserInput
+//                        .setCancelable(false)
+//                        .setPositiveButton("Send", new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialogBox, int id) {
+//                                // ToDo get user input here
+//                                message=userInputDialogEditText.getText().toString();
+//                                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+//                                performSMS(number,message);
+//
+//                            }
+//                        })
+//
+//                        .setNegativeButton("Cancel",
+//                                new DialogInterface.OnClickListener() {
+//                                    public void onClick(DialogInterface dialogBox, int id) {
+//                                        dialogBox.cancel();
+//                                    }
+//                                });
+//
+//                AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
+//                alertDialogAndroid.show();
+//            }
+//        }
+//        );
 
 
 
@@ -170,7 +170,7 @@ public class Home extends AppCompatActivity {
 
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
-                    performSMS(number,message);
+                   // performSMS(number,message);
 
                 } else {
 

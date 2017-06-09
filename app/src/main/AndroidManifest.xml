@@ -102,6 +102,8 @@
 
         <activity android:name=".NewsfeedOnMap"/>
         <activity android:name=".ProfileActivity"/>
+        <activity android:name=".MasterRouteActivity"/>
+
 
         <activity android:name=".DashBoardActivity"/>
         <activity android:name=".StatusSendActivity"/>
