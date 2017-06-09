@@ -1,0 +1,108 @@
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:windowSoftInputMode="adjustPan"
+    >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@color/telenorBlue"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="32dp"
+                    android:text="Give Feedback"
+                    android:textSize="32dp"
+                    android:layout_gravity="center_horizontal"
+                    />
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/below"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="78dp"
+
+                    />
+
+
+
+
+            </FrameLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp"
+                android:weightSum="1">
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:textSize="15sp"
+                        android:lines="3"
+                        android:id="@+id/etFeedback"
+                        android:hint="Feedback"
+                        android:inputType="textImeMultiLine" />
+                </android.support.design.widget.TextInputLayout>
+
+
+                <Button
+                    android:layout_width="250dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_gravity="center"
+                    android:text="Send"
+                    android:textColor="@color/white"
+                    android:background="@drawable/bluebutton"
+                    android:id="@+id/btnFeedback" />
+
+
+
+
+
+            </LinearLayout>
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+
+
+</LinearLayout>

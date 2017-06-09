@@ -105,6 +105,15 @@ public class DashBoardActivity extends AppCompatActivity {
             }
         });
 
+        feedback= (ImageButton) findViewById(R.id.FEEDBACK);
+        feedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), FeedbackActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 
@@ -137,6 +146,7 @@ public class DashBoardActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
         alertDialogBuilderUserInput
                 .setCancelable(true);
