@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
 
+import com.example.t.roadsandhighway.Activity.ImageCloudUpload;
+
 public class MainActivity extends AppCompatActivity  {
 
 
@@ -27,7 +29,9 @@ public class MainActivity extends AppCompatActivity  {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
+
                     Intent intent = new Intent(MainActivity.this, DashBoardActivity.class);
+
                     startActivity(intent);
                 }
             }

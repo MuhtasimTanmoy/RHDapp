@@ -17,5 +17,6 @@
     <string name="classselection">Select Class</string>
 
     <string name="apikey">AIzaSyBxJJjCN7WHdU8o6YCUnYMwgrfHAM9Rbrg</string>
+    <string name="title_activity_image_cloud_upload">ImageCloudUpload</string>
 
 </resources>

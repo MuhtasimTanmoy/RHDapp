@@ -1,5 +1,6 @@
 package com.example.t.roadsandhighway;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +31,8 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
     private static String TAG = "signInPage";
     AutoCompleteTextView myLocation;
     DbHelper dbHelper = new DbHelper(this);
+    private ProgressDialog pDialog;
+
 
 
     @Override
@@ -47,6 +50,7 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
 
                 //Toast.makeText(getApplicationContext(), Boolean.toString(mMeteor.isConnected()), Toast.LENGTH_SHORT).show();
                 if (mMeteor.isConnected()) {
+                    showpDialog();
                     String userName = etUsername.getText().toString();
                     String passWord = etPassword.getText().toString();
                     Log.d(TAG, userName + " " + passWord);
@@ -82,8 +86,9 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
 //
 //
 //                            }
-                            Intent intent = new Intent(getApplicationContext(), Home.class);
-                            //Intent intent = new Intent(getApplicationContext(), SignIn.class);
+
+                            hidepDialog();
+                            Intent intent = new Intent(getApplicationContext(), SignIn.class);
 
                             startActivity(intent);
 
@@ -91,12 +96,18 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
 
                         @Override
                         public void onError(String error, String reason, String details) {
+                            hidepDialog();
+
                             Log.d(TAG, "Error: " + error + " " + reason + " " + details);
                             Toast.makeText(getApplicationContext(), "Enter valid information", Toast.LENGTH_SHORT).show();
 
 
                         }
                     });
+
+                }else{
+                    Toast.makeText(getApplicationContext(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                    mMeteor.connect();
 
                 }
             }
@@ -137,8 +148,22 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
 
     }
 
+    private void showpDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hidepDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
+    }
+
 
     private void init() {
+        pDialog = new ProgressDialog(this);
+        pDialog.setMessage("Please wait...");
+        pDialog.setCancelable(false);
+
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
         btnSignIn = (Button) findViewById(R.id.btnSignIn);
