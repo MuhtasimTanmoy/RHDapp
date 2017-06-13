@@ -88,7 +88,7 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
 //                            }
 
                             hidepDialog();
-                            Intent intent = new Intent(getApplicationContext(), SignIn.class);
+                            Intent intent = new Intent(getApplicationContext(), Administer.class);
 
                             startActivity(intent);
 
@@ -137,7 +137,7 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
             res.moveToFirst();
             String status = res.getString(res.getColumnIndex("status"));
             if (status.equals("true")) {
-                Intent intent = new Intent(getApplicationContext(), Home.class);
+                Intent intent = new Intent(getApplicationContext(), DashBoardActivity.class);
                 startActivity(intent);
                 finish();
 

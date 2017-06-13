@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity  {
                     e.printStackTrace();
                 } finally {
 
-                    Intent intent = new Intent(MainActivity.this, DashBoardActivity.class);
+                    Intent intent = new Intent(MainActivity.this, SignIn.class);
 
                     startActivity(intent);
                 }

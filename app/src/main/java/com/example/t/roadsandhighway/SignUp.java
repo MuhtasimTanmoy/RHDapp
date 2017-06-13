@@ -68,7 +68,7 @@ public class SignUp extends AppCompatActivity implements MeteorCallback {
                             public void onSuccess(String result) {
                                 hidepDialog();
                                 Log.d(TAG, "success  in inserting");
-                                Intent intent = new Intent(getApplicationContext(), Administer.class);
+                                Intent intent = new Intent(getApplicationContext(), SignIn.class);
                                 startActivity(intent);
 
                             }

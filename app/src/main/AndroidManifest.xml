@@ -43,7 +43,7 @@
             android:value="ocr" />
 
         <activity android:name=".SignIn" />
-        <activity android:name=".Activity.StatusSend" />
+        <!--<activity android:name=".Activity.StatusSend"/>-->
         <activity android:name=".Home">
 
             <!-- <intent-filter> -->
@@ -67,7 +67,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/apikey" />
+            android:value="@string/apikey2" />
 
         <activity android:name=".NearByPlaces" />
         <activity android:name=".ShowNearbyPlaces" />

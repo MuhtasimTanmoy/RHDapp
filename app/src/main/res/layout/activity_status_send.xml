@@ -125,7 +125,7 @@ android:background="@color/white"
         android:layout_gravity="center"
         android:text="INFORM"
         android:textColor="@color/white"
-        android:background="@drawable/back_button_border"
+        android:background="@drawable/bluebutton"
         android:id="@+id/btnSubmit" />
 
 

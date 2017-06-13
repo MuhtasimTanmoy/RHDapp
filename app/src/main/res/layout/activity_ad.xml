@@ -38,6 +38,7 @@
             android:layout_width="155dp"
             android:layout_height="136dp"
             android:maxHeight="60dp"
+            android:paddingTop="10dp"
             android:src="@drawable/minister"
             android:layout_gravity="center"/>
         <TextView

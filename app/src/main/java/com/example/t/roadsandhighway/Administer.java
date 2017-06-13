@@ -22,7 +22,7 @@ public class Administer extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Administer.this, Home.class);
+                Intent intent = new Intent(Administer.this, DashBoardActivity.class);
                 startActivity(intent);
             }
         });
