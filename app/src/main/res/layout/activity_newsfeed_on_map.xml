@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     tools:context=".NewsfeedOnMap" >
 
+
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/map"
@@ -17,5 +18,8 @@
         android:id="@+id/btnNewsPress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="press" />
+        android:text="Show on MAp"
+        android:textColor="@color/white"
+        android:background="@drawable/bluebutton"
+        android:visibility="invisible"/>
 </RelativeLayout>

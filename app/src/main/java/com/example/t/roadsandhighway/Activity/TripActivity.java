@@ -2,19 +2,19 @@ package com.example.t.roadsandhighway.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.android.volley.Request;
 import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.t.roadsandhighway.AppController;
 import com.example.t.roadsandhighway.R;
+import com.example.t.roadsandhighway.ShowNearbyPlaces;
 import com.google.android.gms.maps.model.LatLng;
 
 import org.json.JSONArray;

@@ -14,6 +14,21 @@
             android:scaleType="centerCrop"
             android:src="@drawable/profile_header" />
 
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            >
+            <ImageButton
+                android:id="@+id/back_button_pressed_prof"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_keyboard_arrow_left_black_24dp"
+                android:background="@drawable/back_button_border"
+                android:paddingLeft="10dp"/>
+
+        </FrameLayout>
+
 
 
         <RelativeLayout
@@ -125,6 +140,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_gravity="center"
                 android:text="Sign Out"
+                android:layout_marginBottom="10dp"
                 android:textColor="@color/white"
                 android:background="@drawable/bluebutton"
                 android:id="@+id/btnProfileSignOut" />
@@ -133,4 +149,5 @@
 
         </LinearLayout>
     </RelativeLayout>
+
 </ScrollView>

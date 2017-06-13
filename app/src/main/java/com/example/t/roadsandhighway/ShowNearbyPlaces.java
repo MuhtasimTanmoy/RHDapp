@@ -1,6 +1,7 @@
-package com.example.t.roadsandhighway.Activity;
+package com.example.t.roadsandhighway;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.support.annotation.IntegerRes;
 import android.support.v7.app.AppCompatActivity;
@@ -53,22 +54,22 @@ public class ShowNearbyPlaces extends AppCompatActivity implements OnMapReadyCal
     @Override
     public void onMapReady(GoogleMap googleMap) {
         boolean b=true;
-        BitmapDescriptor icon;
-        Log.d("seeIt","IIIII"+searchFor);
-        if(searchFor!="hospital"){
-            Log.d("seeIt","What the");
-            icon= BitmapDescriptorFactory.fromResource(R.drawable.ic_restaurant_black_24dp);
-
-        }
-        else {
-
-         icon = BitmapDescriptorFactory.fromResource(R.drawable.ic_add_circle_outline_black_24dp);
-        }
+//        BitmapDescriptor icon;
+//        Log.d("seeIt","IIIII"+searchFor);
+//        if(searchFor!="hospital"){
+//            Log.d("seeIt","What the");
+//            icon= BitmapDescriptorFactory.fromResource(R.drawable.ic_restaurant_black_24dp);
+//
+//        }
+//        else {
+//
+//         icon = BitmapDescriptorFactory.fromResource(R.drawable.ic_add_circle_outline_black_24dp);
+//        }
         // Add a marker in Sydney, Australia,
         // and move the map's camera to the same location.
         for (LatLng latLng : latLngs) {
             googleMap.addMarker(new MarkerOptions().position(latLng)
-                    .icon(icon));
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
            // googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
             if(b==true){
                 final CameraPosition cameraPosition = new CameraPosition.Builder()

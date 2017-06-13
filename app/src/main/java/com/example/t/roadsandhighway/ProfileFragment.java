@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ public class ProfileFragment extends Fragment {
     private Button btnSignOut;
     private DbHelper dbHelper ;
     private TextView tvName, tvType, tvAddresss,tvContactNo;
+    ImageButton backButtonPressed;
 
     @Nullable
     @Override
@@ -55,6 +57,14 @@ public class ProfileFragment extends Fragment {
         tvType=(TextView) v.findViewById(R.id.user_profile_short_bio);
         tvAddresss=(TextView) v.findViewById(R.id.user_profile_address);
         tvContactNo=(TextView) v.findViewById(R.id.user_profile_contactNO);
+        backButtonPressed= (ImageButton) v.findViewById(R.id.back_button_pressed_prof);
+
+        backButtonPressed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               ((ProfileActivity)getActivity()).onBackPressed();
+            }
+        });
 
 
         int row = dbHelper.numberOfRows("users");
@@ -73,4 +83,6 @@ public class ProfileFragment extends Fragment {
             tvContactNo.setText("Contact No: "+contactNo);
         }
     }
+
+
 }

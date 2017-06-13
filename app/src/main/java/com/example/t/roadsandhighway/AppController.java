@@ -1,4 +1,4 @@
-package com.example.t.roadsandhighway.Activity;
+package com.example.t.roadsandhighway;
 
 /**
  * Created by vacuum on 5/18/17.

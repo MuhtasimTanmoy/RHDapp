@@ -10,6 +10,8 @@ android:background="@color/white"
     android:windowSoftInputMode="adjustPan"
     >
 
+
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -29,19 +31,20 @@ android:background="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="70dp"
             android:text="Submit Road Status"
             android:textSize="32dp"
             android:layout_gravity="center_horizontal"
             />
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/below"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="78dp"
+        <!--<ImageView-->
+        <!--android:layout_width="32dp"-->
+        <!--android:layout_height="32dp"-->
+        <!--android:src="@drawable/below"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_marginTop="78dp"-->
 
-            />
+        <!--/>-->
+
 
         <Spinner
             android:id="@+id/spnrTrafficLevel"
@@ -122,7 +125,7 @@ android:background="@color/white"
         android:layout_gravity="center"
         android:text="INFORM"
         android:textColor="@color/white"
-        android:background="@drawable/bluebutton"
+        android:background="@drawable/back_button_border"
         android:id="@+id/btnSubmit" />
 
 
@@ -152,7 +155,26 @@ android:background="@color/white"
         android:src="@drawable/envelope"
         />
 
+<FrameLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:id="@+id/transitionContainer"
+  >
+        <ImageButton
+            android:id="@+id/back_button_pressed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_keyboard_arrow_left_black_24dp"
+            android:background="@drawable/back_button_border"
+            android:paddingLeft="10dp"/>
+
+</FrameLayout>
+
     </FrameLayout>
+
+
+
 
 
 

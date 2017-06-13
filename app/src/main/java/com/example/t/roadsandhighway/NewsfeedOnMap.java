@@ -12,6 +12,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -60,16 +61,38 @@ public class NewsfeedOnMap extends AppCompatActivity implements MeteorCallback, 
 
         btnPress = (Button) findViewById(R.id.btnNewsPress);
 
+
         btnPress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fetchData();
+
 
             }
         });
 
         mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
+
+//
+//        final CameraPosition cameraPosition = new CameraPosition.Builder()
+//                .target(new LatLng(23.727358, 90.389717))      // Sets the center of the map to Mountain View
+//                .zoom(7)                   // Sets the zoom
+//                .bearing(0)                // Sets the orientation of the camera to east
+//                .tilt(45)                   // Sets the tilt of the camera to 30 degrees
+//                .build();
+//        mapFragment.getMapAsync(new OnMapReadyCallback() {
+//            @Override
+//            public void onMapReady(GoogleMap googleMap) {
+//                //googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(23.727358, 90.389717), 7 ));
+//                googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+//
+//
+//            }
+//        });
+
+
+
+
 
 
     }
@@ -101,6 +124,9 @@ public class NewsfeedOnMap extends AppCompatActivity implements MeteorCallback, 
 
     @Override
     public void onConnect(boolean signedInAutomatically) {
+        Log.d("connection",Boolean.toString(signedInAutomatically));
+
+        fetchData();
 
     }
 
@@ -116,6 +142,8 @@ public class NewsfeedOnMap extends AppCompatActivity implements MeteorCallback, 
 
     @Override
     public void onDataAdded(String collectionName, String documentID, String newValuesJson) {
+
+
 
 
 
@@ -161,9 +189,6 @@ public class NewsfeedOnMap extends AppCompatActivity implements MeteorCallback, 
 
 
             for (StatusObject statusObject : list) {
-                Random r = new Random();
-                double latRand = r.nextDouble();
-                double lngRand = r.nextDouble();
                 LatLng latLng = new LatLng(statusObject.lat, statusObject.lng);
                 googleMap.addMarker(new MarkerOptions().position(latLng)
                         .title(statusObject.level + " " + statusObject.trafficVolume + " "
@@ -173,7 +198,7 @@ public class NewsfeedOnMap extends AppCompatActivity implements MeteorCallback, 
         }
 
 
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(23.727358, 90.389717), 10), 2000, null);
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(23.727358, 90.389717), 14), 2000, null);
 
 
     }

@@ -1,0 +1,47 @@
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:windowSoftInputMode="adjustPan"
+    >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@color/telenorBlue"
+                android:layout_margin="2dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="32dp"
+                    android:text="Under development"
+                    android:textSize="32dp"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+
+
+
+
+            </FrameLayout>
+            </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

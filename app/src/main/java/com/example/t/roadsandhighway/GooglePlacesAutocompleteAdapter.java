@@ -2,19 +2,15 @@ package com.example.t.roadsandhighway;
 
 import android.content.Context;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.example.t.roadsandhighway.Activity.AppController;
 
 import org.json.JSONArray;
 import org.json.JSONException;

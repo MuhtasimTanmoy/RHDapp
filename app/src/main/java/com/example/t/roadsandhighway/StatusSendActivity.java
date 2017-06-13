@@ -8,10 +8,12 @@ import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.transition.TransitionManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -26,6 +28,8 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -53,8 +57,9 @@ public class StatusSendActivity extends AppCompatActivity implements AdapterView
     private Map<String, String> trafiic = new HashMap<String, String>();
     private FloatingActionButton fab;
     private String message;
+    private ImageButton backButtonPressed;
     private String  number="01521465317";
-
+    FrameLayout frameLayout;
 
 
 
@@ -64,6 +69,7 @@ public class StatusSendActivity extends AppCompatActivity implements AdapterView
         setContentView(R.layout.activity_status_send);
 
         //View v=inflater.inflate(R.layout.activity_status_send,container,false);
+        backButtonPressed= (ImageButton) findViewById(R.id.back_button_pressed);
 
         etMyLocation= (AutoCompleteTextView)findViewById(R.id.myLocation);
         etNotes = (EditText) findViewById(R.id.etNotes);
@@ -73,6 +79,7 @@ public class StatusSendActivity extends AppCompatActivity implements AdapterView
         etMyLocation.setOnItemClickListener(this);
         geoCode=new GeoCode(getApplicationContext());
         fab= (FloatingActionButton) findViewById(R.id.triggerMessageInFab);
+        frameLayout= (FrameLayout) findViewById(R.id.transitionContainer);
 
 
 
@@ -80,6 +87,20 @@ public class StatusSendActivity extends AppCompatActivity implements AdapterView
 
         init();
 
+//        AnimationDrawable frameAnimation = (AnimationDrawable) backButtonPressed.getBackground();
+//        frameAnimation.setOneShot(true);
+
+        // Start the animation (looped playback by default).
+//        frameAnimation.start();
+
+
+
+        backButtonPressed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StatusSendActivity.super.onBackPressed();
+            }
+        });
 
         etMyLocation.setOnTouchListener(new View.OnTouchListener() {
 
@@ -110,9 +131,14 @@ public class StatusSendActivity extends AppCompatActivity implements AdapterView
             }
         });
 
+
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                TransitionManager.beginDelayedTransition(frameLayout);
+                backButtonPressed.setVisibility(View.GONE);
+
 
 
                 if (comWithServer.isConnected()) {
