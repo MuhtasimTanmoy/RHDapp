@@ -76,7 +76,7 @@ public class ShowNearbyPlaces extends AppCompatActivity implements OnMapReadyCal
                         .target(latLng)      // Sets the center of the map to Mountain View// Sets the zoom// Sets the orientation of the camera to east
                         .tilt(60).zoom(18)
                         .build();
-            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition) ,2000, null);
+            googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
             b=false;}
 
 

@@ -150,15 +150,18 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
             }
         });
 
+            ///TODO here connection goes
+//        // create a new instance
+//        mMeteor = new Meteor(getContext(), "ws://52.175.255.59/websocket", new InMemoryDatabase());
+//
+//        // register the callback that will handle events and receive messages
+//        mMeteor.addCallback(this);
+//
+//        // establish the connection
+//        mMeteor.connect();
 
-        // create a new instance
-        mMeteor = new Meteor(getContext(), "ws://52.175.255.59/websocket", new InMemoryDatabase());
 
-        // register the callback that will handle events and receive messages
-        mMeteor.addCallback(this);
-
-        // establish the connection
-        mMeteor.connect();
+        //TODO ends
 
 
 //        gpsEnable.setOnClickListener(new View.OnClickListener() {
@@ -259,9 +262,12 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
 //                        intent.putExtra("locList", (Serializable) list);
 //                        startActivity(intent);
                         pathList = list;
-                        //supportMapFragment.getMapAsync(MapAPIfragment.this);
+                        supportMapFragment.getMapAsync(MapAPIfragment.this);
+                            Log.d("check", String.valueOf(pathList));
 
-                        fetchData();
+
+                        ///TODO server data coming
+                        //fetchData();
                     }
 
                     @Override
@@ -377,25 +383,25 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
     public void onMapReady(GoogleMap googleMap) {
 
 
-
-        if (statusList.size() > 0) {
-
-            for (StatusObject statusObject : statusList) {
-                LatLng latLng = new LatLng(statusObject.lat, statusObject.lng);
-                googleMap.addMarker(new MarkerOptions().position(latLng)
-                        .title(statusObject.level + " ")).showInfoWindow();
-//            + statusObject.trafficVolume + " "
-//                    + statusObject.averageSpeed
-                //googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-            }
-        }
+            ///TODO here map shows the lat lng
+//        if (statusList.size() > 0) {
+//
+//            for (StatusObject statusObject : statusList) {
+//                LatLng latLng = new LatLng(statusObject.lat, statusObject.lng);
+//                googleMap.addMarker(new MarkerOptions().position(latLng)
+//                        .title(statusObject.level + " ")).showInfoWindow();
+////            + statusObject.trafficVolume + " "
+////                    + statusObject.averageSpeed
+//                //googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+//            }
+//        }
 
         if (pathList.size() > 0) {
             final CameraPosition cameraPosition = new CameraPosition.Builder()
                     .target(pathList.get(1))      // Sets the center of the map to Mountain View// Sets the zoom// Sets the orientation of the camera to east
-                    .tilt(45)                   // Sets the tilt of the camera to 30 degrees
+                    .tilt(60).zoom(15)                   // Sets the tilt of the camera to 30 degrees
                     .build();
-            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 2000, null);
+//            googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
 
             Polyline line = googleMap.addPolyline(new PolylineOptions()
@@ -406,7 +412,14 @@ public class MapAPIfragment extends Fragment implements AdapterView.OnItemClickL
             );
 
 
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(pathList.get(0), 15), 2000, null);
+
+            googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+            googleMap.addMarker(new MarkerOptions().position(pathList.get(0)));
+            googleMap.addMarker(new MarkerOptions().position(pathList.get(pathList.size()-1)));
+
+
+            Log.d("check","done");
 
             Thread timerThread = new Thread() {
                 public void run() {

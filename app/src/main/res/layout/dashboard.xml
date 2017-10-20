@@ -3,7 +3,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/base_color"
+    android:background="@color/white"
 
     >
 
@@ -26,11 +26,10 @@
             android:layout_height="wrap_content"
             android:text="My RSP"
             android:paddingRight="10dp"
-            android:textColor="@color/white"
+            android:textColor="@color/base_color"
             android:layout_gravity="center_horizontal"
             android:textSize="60sp"
             android:fontFamily="sans-serif-medium"
-            android:textStyle="italic"
 
 
             />
@@ -66,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Route"
-                android:textColor="@color/white"
+                android:textColor="@color/base_color"
                 android:layout_weight="1"
                 android:layout_gravity="center"/>
 
@@ -101,7 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ETA"
-                android:textColor="@color/white"
+                android:textColor="@color/base_color"
                 android:layout_weight="1"
                 android:layout_gravity="center"/>
 
@@ -129,7 +128,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Recent Incident"
-                    android:textColor="@color/white"
+                    android:textColor="@color/base_color"
                     android:layout_weight="1"
                     android:layout_gravity="center"/>
 
@@ -170,7 +169,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Near Me"
-                    android:textColor="@color/white"
+                    android:textColor="@color/base_color"
                     android:layout_weight="1"
                     android:layout_gravity="center"/>
 
@@ -200,7 +199,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Forecast"
-                    android:textColor="@color/white"
+                    android:textColor="@color/base_color"
                     android:layout_weight="1"
                     android:layout_gravity="center"/>
 
@@ -230,7 +229,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="My Details"
-                            android:textColor="@color/white"
+                            android:textColor="@color/base_color"
                             android:layout_weight="1"
                             android:layout_gravity="center"/>
 
@@ -269,7 +268,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Award"
-                android:textColor="@color/white"
+                android:textColor="@color/base_color"
                 android:layout_weight="1"
                 android:layout_gravity="center"/>
 
@@ -297,7 +296,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Feedback"
-                    android:textColor="@color/white"
+                    android:textColor="@color/base_color"
                     android:layout_weight="1"
                     android:layout_gravity="center"/>
 
@@ -326,7 +325,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Emergency Call"
-                        android:textColor="@color/white"
+                        android:textColor="@color/base_color"
                         android:layout_weight="1"
                         android:layout_gravity="center"/>
 

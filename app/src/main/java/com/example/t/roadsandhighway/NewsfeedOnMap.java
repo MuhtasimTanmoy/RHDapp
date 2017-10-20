@@ -198,7 +198,7 @@ public class NewsfeedOnMap extends AppCompatActivity implements MeteorCallback, 
         }
 
 
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(23.727358, 90.389717), 14), 2000, null);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(23.727358, 90.389717), 14));
 
 
     }

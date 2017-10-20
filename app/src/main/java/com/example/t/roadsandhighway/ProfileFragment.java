@@ -5,15 +5,12 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * Created by t on 5/14/17.
@@ -34,7 +31,7 @@ public class ProfileFragment extends Fragment {
         btnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "wow", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "wow", Toast.LENGTH_SHORT).show();
                 dbHelper.updateStatus(1,"false");
                 dbHelper.deleteUserDetails(1);
                 SignIn.mMeteor.logout();

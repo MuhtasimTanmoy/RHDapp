@@ -48,7 +48,14 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
             @Override
             public void onClick(View v) {
 
+
+                Intent intent = new Intent(getApplicationContext(), DashBoardActivity.class);
+
+                startActivity(intent);
+
                 //Toast.makeText(getApplicationContext(), Boolean.toString(mMeteor.isConnected()), Toast.LENGTH_SHORT).show();
+           /*///TODO set This to check login
+
                 if (mMeteor.isConnected()) {
                     showpDialog();
                     String userName = etUsername.getText().toString();
@@ -109,7 +116,9 @@ public class SignIn extends AppCompatActivity implements MeteorCallback {
                     Toast.makeText(getApplicationContext(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
                     mMeteor.connect();
 
-                }
+                } */
+
+
             }
         });
 
