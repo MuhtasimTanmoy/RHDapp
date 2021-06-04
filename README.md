@@ -15,14 +15,14 @@ Traffic jam monitor service. Jam and accident reports posted and analyzed. Data 
 
 ## ScreenShots
 
-![alt text](https://github.com/MuhtasimTanmoy/RHDapp/blob/master/screenshots/rhd0.jpg)
+<img src="https://github.com/MuhtasimTanmoy/RHDapp/blob/master/screenshots/rhd0.jpg" alt="drawing" width="200"/>
 
-![alt text](https://github.com/MuhtasimTanmoy/RHDapp/blob/master/screenshots/rhd1.jpg)
+<img src="https://github.com/MuhtasimTanmoy/RHDapp/blob/master/screenshots/rhd1.jpg" alt="drawing" width="200"/>
 
-![alt text](https://github.com/MuhtasimTanmoy/RHDapp/blob/master/screenshots/rhd2.jpg)
+<img src="https://github.com/MuhtasimTanmoy/RHDapp/blob/master/screenshots/rhd2.jpg" alt="drawing" width="200"/>
 
-![alt text](https://github.com/MuhtasimTanmoy/RHDapp/blob/master/screenshots/rhd3.jpg)
+<img src="https://github.com/MuhtasimTanmoy/RHDapp/blob/master/screenshots/rhd3.jpg" alt="drawing" width="200"/>
 
-![alt text](https://github.com/MuhtasimTanmoy/RHDapp/blob/master/screenshots/rhd4.jpg)
+<img src="https://github.com/MuhtasimTanmoy/RHDapp/blob/master/screenshots/rhd4.jpg" alt="drawing" width="200"/>
 
-![alt text](https://github.com/MuhtasimTanmoy/RHDapp/blob/master/screenshots/rhd5.jpg)
+<img src="https://github.com/MuhtasimTanmoy/RHDapp/blob/master/screenshots/rhd5.jpg" alt="drawing" width="200"/>
